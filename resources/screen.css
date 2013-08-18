@@ -1,0 +1,98 @@
+/*  
+ *  Basic Layout Section 
+ */
+ body {
+  margin: 0px;
+  padding: 40px 0px;
+  height:100%;
+  width:100%;
+  background-color: lightgrey;
+
+  font-family: georgia, arial;
+}
+
+#page {
+  width:620px;
+  margin:auto;
+  padding:20px;
+  background-color: white;
+  border: 2px solid grey;
+
+}
+
+
+/*  
+ *  Basic Typografie 
+ */
+ .heading{
+  font-weight: normal;
+  border-bottom: 2px solid lightgrey;
+  padding-bottom: 5px;
+  margin-bottom: 1em;
+  margin-top: 0.5em;
+  line-height: 1;
+  vertical-align: top;
+  padding-top: 0;
+
+}
+
+/*  
+ *  Basic Structure 
+ */
+ ul, li{
+  list-style:none;
+  margin:0;
+  padding:0;
+}
+
+
+/*  
+ *  Canvas Styling
+ */
+ .kineticjs-content{
+  border: 1px dashed #ccc;
+}
+
+
+/*  
+ *  Select Pointer Section
+ */
+ .pointers{
+  display:table;
+  border: 2px solid grey;
+  border-radius: 2px;
+  background-color: lightgrey;
+}
+
+  .pointers > li {
+    border-right:2px solid grey;
+    display:block;
+    float: left;
+    width:30px;
+    text-align:center;
+    height:30px;
+    margin: 0px;
+  }
+
+    .pointers > li:last-child {
+      border:0;
+    }
+
+    .pointers label{
+      font-size: 0;
+      position:relative;
+    }
+
+    .pointers input{
+      position:absolute;
+      top:8px;
+      left:0
+    }
+
+      .pointers input["selected"]{
+        content: "o";
+        color: red;
+        font-size:1em;
+        position:relative;
+        display:block;
+      }

@@ -2,47 +2,66 @@
 <html>
   <head>
     <meta charset='utf-8'>
-    <script type="text/javascript" src="http://d3lp1msu2r81bx.cloudfront.net/kjs/js/lib/kinetic-v4.5.5.min.js" ></script>
-    <script type="text/javascript" src="cursorme.js"></script>
+    <!--script type="text/javascript" src="http://d3lp1msu2r81bx.cloudfront.net/kjs/js/lib/kinetic-v4.5.5.min.js" ></script-->
+
+    <script type="text/javascript" src="resources/jquery.js"></script>
+    <script type="text/javascript" src="resources/cursorme.js"></script>
     
-    <link href="screen.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="resources/font-awesome/css/font-awesome.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="resources/screen.css" media="all" rel="stylesheet" type="text/css" />
   </head>
 
   <body>
-    <section> 
-      <h1>Her mit dem Bild!</h1>
-      
-      <label>Bild Hochladen...
-        <input name="imagesrc" type="radio" value="upload">
-      </label>
-      <label>Aus der Zwischenablage einfügen...
-        <input name="imagesrc" type="radio" value="copynpaste">
-      </label>
-      <label>Drag'n'Drop
-        <input name="imagesrc" type="radio" value="dragndrop">
-      </label>
-      <label>Link (Adresse)
-        <input name="imagesrc" type="radio" value="url">
-      </label>
-    </section>  
-    <section>
-      <h1>Dein gemauszeigertes Meisterstück entsteht genau hier:</h1>
-      <div id="container"></div>
-    </section>
+    <div id="page">
+      <!-- provide image for cursorization -->
+      <section id="add_image"> 
+        <h1 class="heading">Her mit dem Bild!</h1>
+        
+        <label>Bild Hochladen...
+          <input name="imagesrc" type="radio" value="upload">
+        </label>
+        <label>Aus der Zwischenablage einfügen...
+          <input name="imagesrc" type="radio" value="copynpaste">
+        </label>
+        <label>Drag'n'Drop
+          <input name="imagesrc" type="radio" value="dragndrop">
+        </label>
+        <label>Link (Adresse)
+          <input name="imagesrc" type="radio" value="url">
+        </label>
+      </section>  
+      <section>
+        <h1 class="heading">Dein gemauszeigertes Meisterstück entsteht genau hier:</h1>
+        <div id="container"></div>
+      </section>
 
-    <section>
-      <h1>Wähle einen Mauszeiger</h1>
+      <section>
+        <h1 class="heading">Wähle einen Mauszeiger</h1>
 
-      <label class="cursor-pointer1" data-is-dragable>Mauszeiger
-        <input name="cursortype" type="radio">
-      </label>
-      <label class="cursor-hand1" data-is-dragable>Hand (MAC)
-        <input name="cursortype" type="radio">
-      </label>
-      <label class="cursor-hand2" data-is-dragable>Hand (Windows)
-        <input name="cursortype" type="radio">
-      </label> 
-
-    </section>
+        <ul class="pointers">
+          <li>
+            <label data-is-dragable>
+              Mauszeiger
+              <img src="resources/cursorImg/hand1.png" alt="hand1" />
+              <input name="cursortype" type="radio" />
+            </label>
+          </li>  
+          <li>
+            <label data-is-dragable>
+              Hand (MAC)
+              <img src="resources/cursorImg/hand1.png" alt="hand1" />
+              <input name="cursortype" type="radio" />
+            </label>
+          </li>
+          <li>
+            <label data-is-dragable>
+              Hand (Windows)
+              <img src="resources/cursorImg/hand1.png" alt="hand1" />  
+              <input name="cursortype" type="radio" />
+            </label> 
+          </li> 
+        </ul>
+      </section>
+    </div>
   </body>
 </html>
