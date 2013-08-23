@@ -94,7 +94,7 @@
 (function () {
   function drawImage(imageObj) { 
     var stage = new Kinetic.Stage({
-      container: "container",
+      container: "my-canvas",
       width: 578,
       height: 200
     });
