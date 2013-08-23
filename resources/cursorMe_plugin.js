@@ -27,6 +27,14 @@
         setupCanvas(cursorMe);
       },
 
+      showLoadingIndicator = function() {
+        cosole.log("loading...");
+      },
+
+      removeLoadingIndicator = function() {
+        console.log("finished loading");
+      },
+
       // prepare canvas
       setupCanvas = function(cMe) {
         cMe.stage = new Kinetic.Stage({
@@ -38,35 +46,54 @@
         cMe.layer_cursor     = new Kinetic.Layer();
       },
 
-      hasCursor = function(cMe) {
-        return typeof cMe.cursor === "object";
+      setBackgroundImage = function(cMe, img) {
+        var bkgImg = new Kinetic.Image({
+          image: img
+        });
+
+        cMe.layer_background.clear();
+        cMe.layer_background.add(bkgImg)
       },
 
-      resolveCursorSrc = function(cursor) {
-
+      addBackgroundImage = function(cMe, img) {
+        var imageObj = new Image();
+        imageObj.onload = function() {
+          setBackgroundImage(cMe, img);
+          removeLoadingIndicator();
+        }
+        showLoadingIndicator();
       },
 
       /* cursor need to be of format*/
-      createCursor = function(cMe, cursor) {
-        cMe.cursor.img = new Kinetic.Image({
-          image: cMe.cursor.src,
-          x: stage.getWidth() / 2,
-          y: stage.getHeight() / 2,
+      setCursorImage = function(cMe, img) {
+        var cursorImg = new Kinetic.Image({
+          image: img,
+          x: cMe.stage.getWidth() / 2,
+          y: cMe.stage.getHeight() / 2,
           width: cMe.cursor.width,
           height: cMe.cursor.height,
           draggable: true
         });
 
-        // add cursor styling
-        darthVaderImg.on('mouseover', function() {
+        // cursor styling
+        cursorImg.on('mouseover', function() {
           document.body.style.cursor = 'pointer';
         });
-        darthVaderImg.on('mouseout', function() {
+        cursorImg.on('mouseout', function() {
           document.body.style.cursor = 'default';
         });
 
-        layer.add(darthVaderImg);
+        cMe.layer_cursor.add(cursorImg);
         stage.add(layer);
+      },
+
+      addCursorImage = function(cMe, img, layer) {
+        var imageObj = new Image();
+        imageObj.onload = function() {
+          setCursorImage(cMe, img);
+          removeLoadingIndicator();
+        }
+        showLoadingIndicator();
       };
 
 /* public */
