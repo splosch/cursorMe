@@ -16,14 +16,23 @@
 ;(function ($, K) {
 
   $.cursorMe = function(el, options) {
-    var cursorMe = this;
+    debugger;
+    var defaults = {
+                width: $(el).width(),
+                height: $(el).height(),
+                onSomeEvent: function() {}
+            },
+            cursorMe = this;
+
+        cursorMe.settings = {}
 
 /* privat */
     var
       // grab the selected Element & apply options 
       init = function() {
         cursorMe.settings = $.extend({}, defaults, options);
-        cursorMe.el = el;  
+        cursorMe.el = el; 
+        cursorMe.id = el.split("#")[1]; // assume given id e.g. "#my-canvas" => "my-canvas" 
         setupCanvas(cursorMe);
       },
 
@@ -38,7 +47,7 @@
       // prepare canvas
       setupCanvas = function(cMe) {
         cMe.stage = new Kinetic.Stage({
-          container: cMe.attr('id'),
+          container: cMe.id,
           width: cMe.settings['width'],
           height: cMe.settings['height']
         });
@@ -46,7 +55,14 @@
         cMe.layer_cursor     = new Kinetic.Layer();
       },
 
-      setBackgroundImage = function(cMe, img) {
+      /* paint the Canvas and uses Cursor and Backgroundimage if available */
+      drawCanvas = function(cMe) {
+        setupCanvas(cMe);
+        drawBackgroundImage(cMe);
+        drawCursor(cMe);
+      },
+
+      drawBackgroundImage = function(cMe, img) {
         var bkgImg = new Kinetic.Image({
           image: img
         });
@@ -58,7 +74,7 @@
       addBackgroundImage = function(cMe, img) {
         var imageObj = new Image();
         imageObj.onload = function() {
-          setBackgroundImage(cMe, img);
+          drawBackgroundImage(cMe, img);
           removeLoadingIndicator();
         }
         showLoadingIndicator();
@@ -98,13 +114,13 @@
 
 /* public */
 
-    cMe.addCursor = function (imgUrl) {
+    cursorMe.addCursor = function (imgUrl) {
       // get cursor img url
       // if cursor img is present replace old with new
       // derive drop coordinates and place img accoringly
     }
 
-    cMe.removeCursor = function () {
+    cursorMe.removeCursor = function () {
       // remove current cursor if present
     }
 
