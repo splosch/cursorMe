@@ -39,19 +39,24 @@
 /*  
  *  Basic Structure 
  */
- ul, li{
-  list-style:none;
-  margin:0;
-  padding:0;
-}
+  ul, li{
+    list-style:none;
+    margin:0;
+    padding:0;
+  }
+
+  section {
+    overflow: hidden;
+    margin-bottom: 50px;
+  }
 
 
 /*  
  *  Canvas Styling
  */
- .kineticjs-content{
-  border: 1px dashed #ccc;
-}
+  .kineticjs-content{
+    border: 1px dashed #ccc;
+  }
 
 
 /*  
@@ -96,3 +101,25 @@
         position:relative;
         display:block;
       }
+
+
+/* Upload Area */
+#add_image > label{
+  border: 2px dashed lightgrey;
+  border-radius: 4px;
+  padding: 10px;
+  box-sizing: border-box;
+  width: 22%;
+  height: 90px;
+  display: block;
+  float: left;
+  margin: 0 1.5%;
+}
+
+#add_image > label:hover{
+  background-color: lavenderblush;
+}
+
+#add_image > label > input{
+  background-color: lavenderblush;
+}

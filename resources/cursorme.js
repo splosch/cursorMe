@@ -5,12 +5,16 @@
  */
 
 (function () {
-  var canvas = document.getElementById("my-canvas"),
+  var imgSrc = null,
+    canvas = document.getElementById("my-canvas"),
     context = canvas.getContext("2d"),
     img = document.createElement("img"),
     mouseDown = false,
     brushColor = "rgb(0, 0, 0)",
     hasText = true,
+    $("#imgSrc").on("dragstart", function(evt){
+      imgSrc = this;
+    }),
     clearCanvas = function () {
       if (hasText) {
         context.clearRect(0, 0, canvas.width, canvas.height);
@@ -60,20 +64,9 @@
 
   // Handle dropped image file - only Firefox and Google Chrome
   canvas.addEventListener("drop", function (evt) {
-    var files = evt.dataTransfer.files;
-    if (files.length > 0) {
-      var file = files[0];
-      if (typeof FileReader !== "undefined" && file.type.indexOf("image") != -1) {
-        var reader = new FileReader();
-        // Note: addEventListener doesn't work in Google Chrome for this event
-        reader.onload = function (evt) {
-          img.src = evt.target.result;
-        };
-        reader.readAsDataURL(file);
-      }
-    }
+    
     evt.preventDefault();
-  }, false);
+  });
   
   // Save image
   var saveImage = document.createElement("button");
