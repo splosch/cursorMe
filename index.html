@@ -2,19 +2,19 @@
 <html>
   <head>
     <meta charset='utf-8'>
-    <script type="text/javascript" src="resources/kinetic-v4.5.5.min.js" ></script>
-    <script type="text/javascript" src="resources/jquery.js"></script>
-  
-    <link href="resources/font-awesome/css/font-awesome.css" media="all" rel="stylesheet" type="text/css" />
-    <link href="resources/screen.css" media="all" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="assets/javascript/lib/kinetic.js" ></script>
+    <script type="text/javascript" src="assets/javascript/lib/jquery.js"></script>
+
+    <link href="assets/plugins/font-awesome/css/font-awesome.css" media="all" rel="stylesheet" type="text/css" />
+    <link href="assets/stylesheets/screen.css" media="all" rel="stylesheet" type="text/css" />
   </head>
 
   <body>
     <div id="page">
       <!-- provide image for cursorization -->
-      <section id="add_image"> 
+      <section id="add_image">
         <h1 class="heading">Her mit dem Bild!</h1>
-        
+
         <label id="bkg_img_upload">Bild Hochladen...
           <input id="bkg_img_upload" name="imagesrc" type="radio" value="upload">
         </label>
@@ -28,8 +28,8 @@
           <input id="bkg_img_url" name="imagesrc" type="radio" value="url">
         </label>
 
-        <img id="imgSrc" src="resources/IMG_7791.JPG" alt="ein hochgeladenes Bild" /> 
-      </section>  
+        <img id="imgSrc" src="assets/images/IMG_7791.JPG" alt="ein hochgeladenes Bild" />
+      </section>
 
       <section id="myCoursoredImg">
         <h1 class="heading">Dein gemauszeigertes Meisterstück entsteht genau hier:</h1>
@@ -44,24 +44,24 @@
           <li>
             <label data-is-dragable>
               Mauszeiger
-              <img src="resources/cursorImg/hand1.png" alt="hand1" />
+              <img src="assets/images/icons/hand1.png" alt="hand1" />
               <input name="cursortype" type="radio" />
             </label>
-          </li>  
+          </li>
           <li>
             <label data-is-dragable>
               Hand (MAC)
-              <img src="resources/cursorImg/hand1.png" alt="hand1" />
+              <img src="assets/images/icons/hand1.png" alt="hand1" />
               <input name="cursortype" type="radio" />
             </label>
           </li>
           <li>
             <label data-is-dragable>
               Hand (Windows)
-              <img src="resources/cursorImg/hand1.png" alt="hand1" />  
+              <img src="assets/images/icons/hand1.png" alt="hand1" />
               <input name="cursortype" type="radio" />
-            </label> 
-          </li> 
+            </label>
+          </li>
         </ul>
       </section>
     </div>
@@ -69,5 +69,5 @@
 
   <!-- do some magic -->
   <!--script type="text/javascript" src="resources/cursorme.js"></script-->
-  <script type="text/javascript" src="resources/cursorMe_plugin.js"></script>
+  <script type="text/javascript" src="assets/javascript/cursorMe_plugin.js"></script>
 </html>
