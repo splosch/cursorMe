@@ -1,5 +1,5 @@
-/*  
- *  Basic Layout Section 
+/*
+ *  Basic Layout Section
  */
  body {
   margin: 0px;
@@ -21,8 +21,8 @@
 }
 
 
-/*  
- *  Basic Typografie 
+/*
+ *  Basic Typografie
  */
  .heading{
   font-weight: normal;
@@ -36,8 +36,8 @@
 
 }
 
-/*  
- *  Basic Structure 
+/*
+ *  Basic Structure
  */
   ul, li{
     list-style:none;
@@ -51,15 +51,18 @@
   }
 
 
-/*  
+/*
  *  Canvas Styling
  */
-  .kineticjs-content{
-    border: 1px dashed #ccc;
+  .stage_container{
+    border: 2px dashed #ccc;
+    padding: 5px;
+    display: block;
+    float: left;
   }
 
 
-/*  
+/*
  *  Select Pointer Section
  */
  .pointers{
@@ -122,4 +125,9 @@
 
 #add_image > label > input{
   background-color: lavenderblush;
+}
+
+/* Helper Classes */
+.hidden {
+  display: none!important;
 }

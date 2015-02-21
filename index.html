@@ -12,7 +12,7 @@
   <body>
     <div id="page">
       <!-- provide image for cursorization -->
-      <section id="add_image">
+      <section id="add_image" class="hidden">
         <h1 class="heading">Her mit dem Bild!</h1>
 
         <label id="bkg_img_upload">Bild Hochladen...
@@ -28,16 +28,14 @@
           <input id="bkg_img_url" name="imagesrc" type="radio" value="url">
         </label>
 
-        <img id="imgSrc" src="assets/images/IMG_7791.JPG" alt="ein hochgeladenes Bild" />
       </section>
 
       <section id="myCoursoredImg">
         <h1 class="heading">Dein gemauszeigertes Meisterstück entsteht genau hier:</h1>
-        <div id="container"></div>
-        <canvas id="my-canvas" width="600" height="400">I am canvas</canvas>
+        <div id="container" class="stage_container"></div>
       </section>
 
-      <section>
+      <section class="hidden">
         <h1 class="heading">Wähle einen Mauszeiger</h1>
 
         <ul class="pointers">
@@ -70,4 +68,6 @@
   <!-- do some magic -->
   <!--script type="text/javascript" src="resources/cursorme.js"></script-->
   <script type="text/javascript" src="assets/javascript/cursorMe_plugin.js"></script>
+
+  <script type="text/javascript" src="assets/javascript/app.js"></script>
 </html>

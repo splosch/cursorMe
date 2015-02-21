@@ -37,9 +37,9 @@
        */
       init: function (canvas) {
         var canvasParams = {
-          width: $(canvas).width(),
-          height: $(canvas).height(),
-          id: $(canvas).attr("id") || "cursorMeCanvas",
+          width: 600,
+          height: 400,
+          container: canvas.attr("id") || "container",
         };
         this.options = $.extend({}, canvasParams, options);
 
@@ -47,42 +47,52 @@
         this.setBackgroundImage();
         this.setPointerImage();
       },
-      setBackgroundImage: function (imgData) {
-        // change the background image
-        var backgroundImage = new Kinetic.Image();
+      setBackgroundImage: function (imgUrl) {
+        var imageObj = new Image();
 
-        backgroundImage.setImage(new Image(imgData));
+        imageObj.onload = function(img) {
+          var backgroundImage = new Kinetic.Image({
+              image: img,
+              width: img.width,
+              height: img.height
+            });
 
-        this.layer_background.clear();
-        this.layer_background.add(backgroundImage);
+          this.layer_background.clear();
+          this.layer_background.add(backgroundImage);
 
-        //finally draw onto canvas
-        this.layer_background.draw();
+          this.updateStage();
+        }.bind(this, imageObj);
+
+        imageObj.src = imgUrl;
       },
-      setPointerImage: function (imgData) {
-        // change the pointer
-        var cursorImg = new Kinetic.Image({
-          image: imgData,
-          x: this.stage.getWidth() / 2,
-          y: this.stage.getHeight() / 2,
-          width: this.imgData.width,
-          height: this.imgData.height,
-          draggable: true
-        });
+      setPointerImage: function (imgUrl) {
+        var imageObj = new Image();
 
-        // cursor styling
-        cursorImg.on("mouseover", function () {
-          document.body.style.cursor = "pointer";
-        });
-        cursorImg.on("mouseout", function () {
-          document.body.style.cursor = "default";
-        });
+        imageObj.onload = function(img) {
+          var pointerImage = new Kinetic.Image({
+              image: img,
+              x: this.stage.getWidth() / 2,
+              y: this.stage.getHeight() / 2,
+              width: img.width,
+              height: img.height,
+              draggable: true
+            });
 
-        this.layer_cursor.clear();
-        this.layer_cursor.add(cursorImg);
+          // cursor styling
+          pointerImage.on("mouseover", function () {
+            document.body.style.cursor = "pointer";
+          });
+          pointerImage.on("mouseout", function () {
+            document.body.style.cursor = "default";
+          });
 
-        //finally draw onto canvas
-        this.stage.add(this.layer_cursor.draw());
+          this.layer_cursor.clear();
+          this.layer_cursor.add(pointerImage);
+
+          this.updateStage();
+        }.bind(this, imageObj);
+
+        imageObj.src = imgUrl;
       },
       saveAsImage: function () {
         // present the rendered image with cursor
@@ -90,21 +100,28 @@
       },
       updateStage: function () {
         // rerender the stage after changes
-        return true;
+        this.stage.clear();
+        this.stage.add(this.layer_background);
+        this.stage.add(this.layer_cursor);
+
+        //finally draw onto canvas
+        this.stage.draw();
       },
       addEventHandlers: function () {
 
       },
       setupCanvas: function () {
         this.stage = new Kinetic.Stage({
-          container: this.settings.id,
-          width: this.settings.width,
-          height: this.settings.height
+          container: this.options.container,
+          width: this.options.width,
+          height: this.options.height
         });
 
         //prepare stage layers
         this.layer_background = new Kinetic.Layer();
         this.layer_cursor     = new Kinetic.Layer();
+
+        this.stage.draw();
       },
 
       setupDragnDrop: function () {
@@ -116,11 +133,15 @@
       }
     };
 
+    if(canvas) {
+      cMe.init(canvas);
+    }
+
     // the API
     return {
-      setBackground:  cMe.setBackgroundImage,
-      setPointer:     cMe.setPointerImage,
-      save:           cMe.saveAsImage
+      setBackground:  cMe.setBackgroundImage.bind(cMe),
+      setPointer:     cMe.setPointerImage.bind(cMe),
+      save:           cMe.saveAsImage.bind(cMe)
     };
   };
 })(jQuery, Kinetic);
