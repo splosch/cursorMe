@@ -96,7 +96,11 @@
       },
       saveAsImage: function () {
         // present the rendered image with cursor
-        return true;
+        this.stage.toImage({callback:
+          function(img){
+            $("#myCoursoredImg").append($(img));
+          }
+        });
       },
       updateStage: function () {
         // rerender the stage after changes

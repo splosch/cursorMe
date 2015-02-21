@@ -9,4 +9,6 @@
   $myCursorMe.setBackground(backImg);
   $myCursorMe.setPointer(pointerImg);
 
+  $("#save_the_image").on("click", $myCursorMe.save);
+
 })( jQuery );
