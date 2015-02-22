@@ -44,9 +44,8 @@
         this.options = $.extend({}, canvasParams, options);
 
         this.setupCanvas();
-        this.setBackgroundImage();
-        this.setPointerImage();
       },
+
       setBackgroundImage: function (imgUrl) {
         var imageObj = new Image();
 
