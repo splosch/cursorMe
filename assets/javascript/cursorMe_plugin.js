@@ -89,6 +89,7 @@
           });
 
           this.layer_cursor.clear();
+          this.layer_cursor.removeChildren();
           this.layer_cursor.add(pointerImage);
 
           this.options.pointerImageUrl = imgUrl;

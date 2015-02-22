@@ -82,28 +82,32 @@
     margin: 0px;
   }
 
-    .pointers > li:last-child {
-      border:0;
-    }
+  .pointers > li:last-child {
+    border:0;
+  }
 
-    .pointers label{
-      font-size: 0;
-      position:relative;
-    }
+  .pointers label{
+    font-size: 0;
+    position:relative;
+  }
 
-    .pointers input{
-      position:absolute;
-      top:8px;
-      left:0
-    }
+  .pointers label > img {
+    max-width: 30px;
+  }
 
-      .pointers input["selected"]{
-        content: "o";
-        color: red;
-        font-size:1em;
-        position:relative;
-        display:block;
-      }
+  .pointers input{
+    position:absolute;
+    top:8px;
+    left:0
+  }
+
+  .pointers input["selected"]{
+    content: "o";
+    color: red;
+    font-size:1em;
+    position:relative;
+    display:block;
+  }
 
 
 /* Upload Area */
