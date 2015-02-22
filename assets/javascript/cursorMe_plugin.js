@@ -59,11 +59,12 @@
           this.layer_background.clear();
           this.layer_background.add(backgroundImage);
 
-          this.updateStage();
+          this.updateStage({ width: img.width, height: img.height});
         }.bind(this, imageObj);
 
         imageObj.src = imgUrl;
       },
+
       setPointerImage: function (imgUrl) {
         var imageObj = new Image();
 
@@ -93,6 +94,7 @@
 
         imageObj.src = imgUrl;
       },
+
       saveAsImage: function () {
         // present the rendered image with cursor
         this.stage.toImage({callback:
@@ -101,8 +103,17 @@
           }
         });
       },
-      updateStage: function () {
-        // rerender the stage after changes
+
+      /* redraw the stage and all layers
+       * after changes in the layers occurred
+       * @options, optional, object containing stage option changes { width : 123, height : 456}
+       */
+      updateStage: function (options) {
+        if (options) {
+          if (options.width) {this.stage.setWidth(options.width);}
+          if (options.height) {this.stage.setHeight(options.height);}
+        }
+
         this.stage.clear();
         this.stage.add(this.layer_background);
         this.stage.add(this.layer_cursor);
@@ -110,9 +121,11 @@
         //finally draw onto canvas
         this.stage.draw();
       },
+
       addEventHandlers: function () {
 
       },
+
       setupCanvas: function () {
         this.stage = new Kinetic.Stage({
           container: this.options.container,
