@@ -91,7 +91,9 @@
           this.layer_cursor.clear();
           this.layer_cursor.add(pointerImage);
 
-          this.updateStage();
+          this.options.pointerImageUrl = imgUrl;
+          this.stage.add(this.layer_cursor);
+          this.stage.draw();
         }.bind(this, imageObj);
 
         imageObj.src = imgUrl;
@@ -118,10 +120,8 @@
 
         this.stage.clear();
         this.stage.add(this.layer_background);
-        this.stage.add(this.layer_cursor);
 
-        //finally draw onto canvas
-        this.stage.draw();
+        this.setPointerImage(this.options.pointerImageUrl);
       },
 
       addEventHandlers: function () {
