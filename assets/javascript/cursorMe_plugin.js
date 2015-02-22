@@ -25,6 +25,8 @@
  *            by Eric Rowell @ericdrowell - MIT License https://github.com/ericdrowell/KineticJS/wiki/License
  */
 
+ /* globals jQuery, Kinetic */
+
 (function ($, Kinetic) {
   "use strict";
 
