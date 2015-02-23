@@ -66,11 +66,10 @@
  *  Select Pointer Section
  */
  .pointers{
-  display:table;
-  border: 2px solid grey;
-  border-radius: 2px;
-  background-color: lightgrey;
-}
+    display:table;
+    border: 2px solid grey;
+    border-radius: 2px;
+  }
 
   .pointers > li {
     border-right:2px solid grey;
@@ -87,26 +86,29 @@
   }
 
   .pointers label{
+    background-color: lightgrey;
     font-size: 0;
     position:relative;
+    width: inherit;
+    height: inherit;
+    display: block;
+    cursor: pointer;
   }
 
   .pointers label > img {
     max-width: 30px;
+    max-height: 30px;
   }
 
   .pointers input{
     position:absolute;
     top:8px;
-    left:0
+    left:0;
+    visibility: hidden;
   }
 
-  .pointers input["selected"]{
-    content: "o";
-    color: red;
-    font-size:1em;
-    position:relative;
-    display:block;
+  .pointers input:checked + label {
+    background-color: grey;
   }
 
 

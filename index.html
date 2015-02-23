@@ -12,7 +12,7 @@
   <body>
     <div id="page">
       <!-- provide image for cursorization -->
-      <section id="add_image" class="hidden">
+      <section id="add_image">
         <h1 class="heading">Her mit dem Bild!</h1>
 
         <label id="bkg_img_upload">Bild Hochladen...
@@ -42,33 +42,39 @@
 
         <ul class="pointers">
           <li>
-            <label>
-              <img src="assets/images/icons/cursor_mac_one_finger.png" alt="cursor_mac_one_finger" />
-              <input name="cursortype" type="radio" value="cursor_mac_one_finger"/>
+            <input id="cursor_1" name="cursortype" type="radio" value="no_cursor"/>
+            <label for="cursor_1">
+              <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGP6zwAAAgcBApocMXEAAAAASUVORK5CYII=' alt="reset to no cursor" />
             </label>
           </li>
           <li>
-            <label>
-              <img src="assets/images/icons/cursor_mac_full_hand.png" alt="cursor_mac_full_hand" />
-              <input name="cursortype" type="radio" value="cursor_mac_full_hand" checked/>
+            <input id="cursor_2" name="cursortype" type="radio" value="cursor_mac_one_finger" checked/>
+            <label for="cursor_2">
+              <img src="assets/images/icons/cursor_mac_one_finger.png" alt="cursor mac one finger" />
             </label>
           </li>
           <li>
-            <label>
-              <img src="assets/images/icons/cursor_mac_full_hand_grab.png" alt="cursor_mac_full_hand_grab" />
-              <input name="cursortype" type="radio" value="cursor_mac_full_hand_grab"/>
+            <input id="cursor_3" name="cursortype" type="radio" value="cursor_mac_full_hand"/>
+            <label for="cursor_3">
+              <img src="assets/images/icons/cursor_mac_full_hand.png" alt="cursor mac full hand" />
             </label>
           </li>
           <li>
-            <label>
-              <img src="assets/images/icons/cursor_mac_pointer.png" alt="cursor_mac_pointer" />
-              <input name="cursortype" type="radio" value="cursor_mac_pointer"/>
+            <input id="cursor_4" name="cursortype" type="radio" value="cursor_mac_full_hand_grab"/>
+            <label for="cursor_4">
+              <img src="assets/images/icons/cursor_mac_full_hand_grab.png" alt="cursor mac full hand grab" />
             </label>
           </li>
           <li>
-            <label>
-              <img src="assets/images/icons/cursor_mac_pointer_context.png" alt="cursor_mac_pointer_context" />
-              <input name="cursortype" type="radio" value="cursor_mac_pointer_context"/>
+            <input id="cursor_5" name="cursortype" type="radio" value="cursor_mac_pointer"/>
+            <label for="cursor_5">
+              <img src="assets/images/icons/cursor_mac_pointer.png" alt="cursor mac pointer" />
+            </label>
+          </li>
+          <li>
+            <input id="cursor_6" name="cursortype" type="radio" value="cursor_mac_pointer_context"/>
+            <label for="cursor_6">
+              <img src="assets/images/icons/cursor_mac_pointer_context.png" alt="cursor mac pointer context" />
             </label>
           </li>
         </ul>
