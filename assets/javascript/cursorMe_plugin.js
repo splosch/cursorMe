@@ -48,10 +48,25 @@
         this.setupCanvas();
       },
 
-      setBackgroundImage: function (imgUrl) {
-        var imageObj = new Image();
+      // image is prefferably an instance of Image(), loaded or not doesnt matter
+      // alternatively image can be an absolute image-url
+      setBackgroundImage: function (image) {
+        var imageObj;
 
-        imageObj.onload = function(img) {
+        // allow image to be an Image() instance
+        if (Image.prototype.isPrototypeOf(image)) {
+          imageObj = image;
+        } else {
+          imageObj = new Image();
+
+          // some more validation?
+          //
+          if(typeof image === "string") {
+            imageObj.src = image;
+          }
+        }
+
+        $(imageObj).imgLoad(function(img){
           var backgroundImage = new Kinetic.Image({
               image: img,
               width: img.width,
@@ -62,9 +77,7 @@
           this.layer_background.add(backgroundImage);
 
           this.updateStage({ width: img.width, height: img.height});
-        }.bind(this, imageObj);
-
-        imageObj.src = imgUrl;
+        }.bind(this, imageObj));
       },
 
       setPointerImage: function (imgUrl) {

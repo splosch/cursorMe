@@ -12,33 +12,25 @@
   <body>
     <div id="page">
       <!-- provide image for cursorization -->
-      <section id="add_image">
-        <h1 class="heading">Her mit dem Bild!</h1>
+      <section >
+        <h1 class="heading">Image or Screenshot to add a cursor:</h1>
+        <form action="/#">
+          <label for="bkg_img_url">Image-Url ... try http://localhost:8080/assets/images/IMG_7791.JPG</label>
+          <input id="bkg_img_url" name="imagesrc"  type="url" placeholder="http://www.abc.com/myimage.png" >
 
-        <label id="bkg_img_upload">Bild Hochladen...
-          <input id="bkg_img_upload" name="imagesrc" type="radio" value="upload">
-        </label>
-        <label id="bkg_img_paste">Aus der Zwischenablage einfügen...
-          <input id="bkg_img_paste" name="imagesrc" type="radio" value="copynpaste">
-        </label>
-        <label id="bkg_img_drop">Drag'n'Drop
-          <input id="bkg_img_drop" name="imagesrc" type="radio" value="dragndrop">
-        </label>
-        <label id="bkg_img_url">Link (Adresse)
-          <input id="bkg_img_url" name="imagesrc" type="radio" value="url">
-        </label>
-
+          <button type="submit">GOOO!</button>
+        </form>
       </section>
 
       <section id="myCoursoredImg">
-        <h1 class="heading">Drag the cursor on the image</h1>
+        <h1 class="heading">Poke around the cursor:</h1>
         <div id="container" class="stage_container"></div>
 
         <button id="save_the_image">save the image</button>
       </section>
 
       <section>
-        <h1 class="heading">Choose your pointer</h1>
+        <h1 class="heading">Different pointer??? :</h1>
 
         <ul class="pointers">
           <li>
@@ -83,8 +75,7 @@
   </body>
 
   <!-- do some magic -->
-  <!--script type="text/javascript" src="resources/cursorme.js"></script-->
+  <script type="text/javascript" src="assets/javascript/extensions.js"></script>
   <script type="text/javascript" src="assets/javascript/cursorMe_plugin.js"></script>
-
   <script type="text/javascript" src="assets/javascript/app.js"></script>
 </html>
