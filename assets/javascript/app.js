@@ -24,6 +24,7 @@
   function setBackgroundUrl(url) {
     var backImg = new Image();
 
+    backImg.crossOrigin = '/crossdomain.xml';//crossdomain xml file, this is facebook example
     backImg.src = url;
 
     $(backImg).imgLoad(function(){
