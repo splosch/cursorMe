@@ -1,9 +1,14 @@
-<!DOCTYPE HTML>
-<html>
+<!doctype html>
+<html class="no-js" lang="">
   <head>
-    <meta charset='utf-8'>
-    <script type="text/javascript" src="assets/javascript/lib/kinetic.js" ></script>
-    <script type="text/javascript" src="assets/javascript/lib/jquery.js"></script>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Add a cursor to your image or screenshot - cursorme - made with html5, canvas and love.</title>
+    <meta name="description" content="cursorme - guide attention and explain workflows by adding eye-catching cursors to your screenshots and images. cursorme is a free yet convenient tool that does just one thing. No photoshop, no bloated UI, no fuzz, just add a cursor to your pictures, buttons and screens.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <!-- Place favicon.ico in the root directory -->
 
     <link href="assets/plugins/font-awesome/css/font-awesome.css" media="all" rel="stylesheet" type="text/css" />
     <link href="assets/stylesheets/screen.css" media="all" rel="stylesheet" type="text/css" />
@@ -23,6 +28,8 @@
           <input id="bkg_img_url" name="imagesrc" value="http://lorempixel.com/600/400/sports/CURSORME/" type="url" placeholder="http://www.abc.com/myimage.png" >
 
           <button type="submit">GOOO!</button>
+
+          <p>You are only allowed to grab images via URL from domains / websites, that grant access to these images (CORS), anyhow to fetch any image is on the plan :) - Your'e doing art right ?!</p>
         </form>
       </section>
 
@@ -78,8 +85,21 @@
     </div>
   </body>
 
+  <!-- set the stage -->
+  <script type="text/javascript" src="assets/javascript/lib/kinetic.js" ></script>
+  <script type="text/javascript" src="assets/javascript/lib/jquery.js"></script>
+
   <!-- do some magic -->
   <script type="text/javascript" src="assets/javascript/extensions.js"></script>
   <script type="text/javascript" src="assets/javascript/cursorMe_plugin.js"></script>
   <script type="text/javascript" src="assets/javascript/app.js"></script>
+
+  <script>
+    (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
+    function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
+    e=o.createElement(i);r=o.getElementsByTagName(i)[0];
+    e.src='//www.google-analytics.com/analytics.js';
+    r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+    ga('create','UA-60186419-1','auto');ga('send','pageview');
+  </script>
 </html>
