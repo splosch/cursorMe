@@ -54,7 +54,7 @@
         var imageObj;
 
         // allow image to be an Image() instance
-        if (Image.prototype.isPrototypeOf(image)) {
+        if (Image.prototype.isPrototypeOf(image) || typeof image === "object") {
           imageObj = image;
         } else {
           imageObj = new Image();

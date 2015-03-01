@@ -23,7 +23,7 @@
       <!-- provide image for cursorization -->
       <section >
         <h1 class="heading">Image or Screenshot to add a cursor:</h1>
-        <form action="/#">
+        <form id="submit_image_url" action="/#">
           <label for="bkg_img_url">Image-Url</label>
           <input id="bkg_img_url" name="imagesrc" value="http://lorempixel.com/600/400/sports/CURSORME/" type="url" placeholder="http://www.abc.com/myimage.png" >
 
@@ -35,7 +35,15 @@
 
       <section id="myCoursoredImg">
         <h1 class="heading">Poke around the cursor:</h1>
-        <div id="container" class="stage_container"></div>
+
+        <form action="/#">
+          <div id="container" class="stage_container"></div>
+
+          <!-- fallback start for upload screens in case dropzone.js does not work -->
+          <label for="uploadFile" class="hidden">Upload a file</label>
+          <input id="uploadFile" class="hidden" type="file" name="file" />
+          <!-- fallback end -->
+        </form>
 
         <button id="save_the_image">save the image</button>
       </section>
@@ -88,6 +96,7 @@
   <!-- set the stage -->
   <script type="text/javascript" src="assets/javascript/lib/kinetic.js" ></script>
   <script type="text/javascript" src="assets/javascript/lib/jquery.js"></script>
+  <script type="text/javascript" src="assets/javascript/lib/dropzone.js"></script>
 
   <!-- do some magic -->
   <script type="text/javascript" src="assets/javascript/extensions.js"></script>

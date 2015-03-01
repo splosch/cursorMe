@@ -1,47 +1,69 @@
- /* globals jQuery */
+ /* globals $, Dropzone */
 
-(function( $ ) {
+$(function( Dropzone ) {
   "use strict";
 
-  var pointerImg  = $("input[type='radio'][name='cursortype']:checked + label").find("img").attr("src") || "assets/images/icons/hand1.png",
-      $container  = $("#container"),
-      $myCursorMe = $.cursorMe($container);
+  var app = {
+    page: "#page",
+    container: "#container",
+    cursorMeDropzone: {},
+    fallbackPointerImg: "assets/images/icons/hand1.png",
 
-  // check provided URL
-  // if correct load images automagically
-  // once loaded replace the current background image
-  $("#bkg_img_url").parents("form").on("submit", function(event){
-    setBackgroundUrl($(this).find("input[type='url']").val());
+    init: function () {
+      var pointerImg  = $("input[type='radio'][name='cursortype']:checked + label").find("img").attr("src") || this.fallbackPointerImg;
 
-    event.preventDefault();
-  });
+      this.page = $(this.page);
 
-  function updateUploadStatus(status) {
-    var known_status = ["success", "fail", "loading"];
-    $("#uploadStatus").attr("data-status", known_status[status] || "undefined");
-  }
+      this.cursorMeCanvas   = $.cursorMe($(this.container));
+      this.cursorMeDropzone = new Dropzone(this.container, { previewsContainer: false, url: "/#"});
 
-  function setBackgroundUrl(url) {
-    var backImg = new Image();
+      this.setPointer(pointerImg);
 
-    backImg.crossOrigin = '/crossdomain.xml';//crossdomain xml file, this is facebook example
-    backImg.src = url;
+      this.addEventHandlers();
+    },
 
-    $(backImg).imgLoad(function(){
-      $myCursorMe.setBackground(this);
-      updateUploadStatus("done");
-    });
-  }
+    addEventHandlers: function () {
+      this.page.on("submit", "form#submit_image_url", this.submitImageUrl.bind(this));
+      this.page.on("click touchend keyup", "#save_the_image",  this.cursorMeCanvas.save);
+      this.page.on("change", "input[type='radio'][name='cursortype']", function(event){
+        var newPointerImg  = $(event.target).siblings("label").find("img").attr("src");
 
-  // handle setting the cursor
-  $myCursorMe.setPointer(pointerImg);
-  $("input[type='radio'][name='cursortype']").on("change", function(){
-    var newPointerImg  = $(this).siblings("label").find("img").attr("src") || pointerImg;
+        this.setPointer(newPointerImg);
+      }.bind(this));
 
-    $myCursorMe.setPointer(newPointerImg);
-  });
+      // Dropzone events
+      this.cursorMeDropzone.on("imagefullsize", function(file, image) {
+        this.cursorMeCanvas.setBackground(image);
+      }.bind(this));
+    },
 
+    submitImageUrl: function ( event ) {
+      var imageUrl = $(event.target).find("input[type='url']").val() ;
 
-  $("#save_the_image").on("click", $myCursorMe.save);
+      if (imageUrl) {
+        this.setBackgroundUrl(imageUrl);
+      }
 
-})( jQuery );
+      event.preventDefault();
+    },
+
+    // interact with cursorMe - stage
+    setBackgroundUrl: function ( url ) {
+      var backImg = new Image();
+
+      backImg.crossOrigin = "/crossdomain.xml";//crossdomain xml file, this is facebook example
+      backImg.src = url;
+
+      $(backImg).imgLoad(function(){
+        this.cursorMeCanvas.setBackground(backImg);
+      }.bind(this));
+    },
+
+    setPointer: function ( pointerImg ) {
+      this.cursorMeCanvas.setPointer(pointerImg || this.fallbackPointerImg);
+    },
+  };
+
+  app.init();
+
+}( Dropzone ));
