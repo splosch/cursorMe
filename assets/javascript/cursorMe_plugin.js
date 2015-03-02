@@ -39,8 +39,8 @@
        */
       init: function (canvas) {
         var canvasParams = {
-          width: 600,
-          height: 400,
+          width: canvas.width() || 1200,
+          height: canvas.height() || 800,
           container: canvas.attr("id") || "container",
         };
         this.options = $.extend({}, canvasParams, options);

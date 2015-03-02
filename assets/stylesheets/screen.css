@@ -96,21 +96,23 @@ textarea {
 /*
  *  Basic Layout Section
  */
- body {
+
+html, body, #page, .stage_container{
   margin: 0px;
-  padding: 40px 0px;
-  height:100%;
-  width:100%;
+  padding: 0;
+  height: 100%;
+  width: 100%;
   background-color: lightgrey;
   font-family: georgia, arial;
+  position: absolute;
+  top: 0;
+  left: 0;
 }
 
-#page {
-  width:620px;
-  margin:auto;
-  padding:20px;
-  background-color: white;
-  border: 2px solid grey;
+aside#cursors {
+  position: absolute;
+  top: 20%;
+  left: 0;
 }
 
 /*
@@ -144,31 +146,12 @@ section {
 }
 
 /*
- *  Canvas Styling
- */
-.stage_container{
-  border: 2px dashed #ccc;
-  padding: 5px;
-  display: block;
-  float: left;
-}
-
-/*
  *  Select Pointer Section
  */
-.pointers{
-  display:table;
-  border: 2px solid grey;
-  border-radius: 2px;
-}
-
 .pointers > li {
-  border-right:2px solid grey;
   display:block;
   float: left;
-  width:30px;
   text-align:center;
-  height:30px;
   margin: 0px;
 }
 
@@ -177,12 +160,12 @@ section {
 }
 
 .pointers label{
+  display:none;
   background-color: lightgrey;
   font-size: 0;
   position:relative;
   width: inherit;
   height: inherit;
-  display: block;
   cursor: pointer;
 }
 
@@ -198,7 +181,13 @@ section {
   visibility: hidden;
 }
 
-.pointers input:checked + label {
+.pointers:hover label, .pointers input:checked + label {
+  width:30px;
+  height:30px;
+  display: block;
+}
+
+.pointers input:checked + label, .pointers label:hover {
   background-color: grey;
 }
 
