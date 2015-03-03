@@ -109,6 +109,33 @@ html, body, #page, .stage_container{
   left: 0;
 }
 
+
+.stage_container.icon-picture:before {
+  font-size: 16em;
+  position: absolute;
+  color: rgba(0,0,0, 0.15);
+  display: block;
+  width: 1em;
+  text-align: center;
+  line-height: 1.2em;
+  vertical-align: middle;
+  top: 50%;
+  margin-top: -1em;
+  border: 4px dashed;
+  left: 50%;
+  margin-left: -1em;
+  padding: 0.5em;
+  height: 1em;
+  overflow: hidden;
+  border-radius: 0.25em;
+}
+
+.stage_container.dz-drag-hover:before {
+  content: "\f00c";
+  color: rgba(255,255,255, 0.8);
+  border-color: rgba(255,255,255, 0.8);
+}
+
 aside#cursors {
   position: absolute;
   top: 20%;

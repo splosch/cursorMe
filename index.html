@@ -10,6 +10,10 @@
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
     <!-- Place favicon.ico in the root directory -->
 
+    <!--
+         Credits to FontAwesome, for truly awesome fonts :)
+         Font Awesome - http://fortawesome.github.com/Font-Awesome
+    -->
     <link href="assets/plugins/font-awesome/css/font-awesome.css" media="all" rel="stylesheet" type="text/css" />
     <link href="assets/stylesheets/screen.css" media="all" rel="stylesheet" type="text/css" />
   </head>
@@ -27,14 +31,14 @@
            receiving background image and cursor
            additionally it can receive images via drag'n'drop
       -->
-      <section id="container" class="stage_container"></section>
+      <section id="container" class="stage_container icon-picture"></section>
 
       <!-- provide image for cursorization -->
       <aside id="provide_background">
         <h1 class="heading">Add your image or screenshot via (select)</h1>
 
         <input id="image_via_url" name="upload" type="radio" value="image_via_url"/>
-        <label class="upload_type" for="url">
+        <label class="upload_type icon-link" for="url">
           <h2> Image-Url </h2>
 
           <form id="submit_image_url" action="/#">
@@ -49,7 +53,7 @@
         </label>
 
         <input id="image_via_upload" name="upload" type="radio" value="image_via_upload"/>
-        <label class="upload_type" for="upload">
+        <label class="upload_type icon-upload-alt" for="upload">
           <h2> Select from your device </h2>
 
           <!--input class="hidden" name="file" type="file" multiple /-->
@@ -82,7 +86,7 @@
         <ul class="pointers">
           <li>
             <input id="cursor_1" name="cursortype" type="radio" value="no_cursor"/>
-            <label for="cursor_1">
+            <label for="cursor_1" class="icon-ban-circle">
               <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGP6zwAAAgcBApocMXEAAAAASUVORK5CYII=' alt="reset to no cursor" />
             </label>
           </li>
