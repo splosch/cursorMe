@@ -136,6 +136,13 @@
         this.stage.add(this.layer_background);
 
         this.setPointerImage(this.options.pointerImageUrl);
+
+        // center content
+        this.stage.content.style.marginLeft = (- Math.floor(options.width / 2)) + "px";
+        this.stage.content.style.marginTop =  (- Math.floor(options.height / 2)) + "px";
+        this.stage.content.style.position = "absolute";
+        this.stage.content.style.left = "50%";
+        this.stage.content.style.top = "50%";
       },
 
       addEventHandlers: function () {
