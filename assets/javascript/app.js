@@ -10,12 +10,20 @@ $(function( Dropzone ) {
     fallbackPointerImg: "assets/images/icons/hand1.png",
 
     init: function () {
-      var pointerImg  = $("input[type='radio'][name='cursortype']:checked + label").find("img").attr("src") || this.fallbackPointerImg;
+      var pointerImg  = $("input[type='radio'][name='cursortype']:checked + label").find("img").attr("src") || this.fallbackPointerImg,
+          dropzoneOptions = {};
 
       this.page = $(this.page);
 
       this.cursorMeCanvas   = $.cursorMe($(this.container));
-      this.cursorMeDropzone = new Dropzone(this.container, { previewsContainer: false, url: "/#"});
+
+      dropzoneOptions = {
+        previewsContainer : false,
+        url               : "/#",
+        clickable         : [this.container, "#catch_the_click"]
+      }
+
+      this.cursorMeDropzone = new Dropzone(this.container, dropzoneOptions);
 
       this.setPointer(pointerImg);
 
