@@ -123,7 +123,11 @@
         // present the rendered image with cursor
         this.stage.toImage({callback:
           function(img){
-            $("#myCoursoredImg").append($(img));
+            var li = $("<li>").append($(img));
+
+            li.addClass("fadeInDown animated");
+
+            $("ul#coursored_imgs").append(li);
           }
         });
       },

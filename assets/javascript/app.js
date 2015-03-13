@@ -19,8 +19,7 @@ $(function( Dropzone ) {
 
       dropzoneOptions = {
         previewsContainer : false,
-        url               : "/#",
-        clickable         : [this.container, "#catch_the_click"]
+        url               : "/#"
       }
 
       this.cursorMeDropzone = new Dropzone(this.container, dropzoneOptions);
