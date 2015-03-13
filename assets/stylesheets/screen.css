@@ -152,7 +152,7 @@ html, body, #page, .stage_container{
               0 0 0 200px lightgrey
 }
 
-aside#cursors {
+aside#actions {
   position: absolute;
   top: 20%;
   left: 0;
@@ -191,20 +191,49 @@ section {
 /*
  *  Select Pointer Section
  */
-.pointers > li {
-  display:block;
-  float: left;
-  text-align:center;
-  margin: 0px;
+
+ .tiles {
+  width: 50px;
+  height: 50px;
+  overflow: hidden;
+ }
+.tiles:hover {
+  width:auto;
 }
 
-.pointers > li:last-child {
+.tiles > li {
+  display: block;
+  float: left;
+  text-align: center;
+  margin: 0px;
+  width: 50px;
+  height: 50px;
+  background-color: tomato;
+}
+
+.tiles > li:last-child {
   border:0;
+}
+
+
+.tiles .icon {
+  font-size: 0;
+  display: block;
+  text-align: center;
+  height: 100%;
+  width: 100%;
+}
+
+.tiles .icon:before {
+  font-size: 40px;
+  line-height: 56px;
+  display: inline-block;
+  text-decoration: none;
+  color: white;
 }
 
 .pointers label{
   display:none;
-  background-color: lightgrey;
   font-size: 0;
   position:relative;
   width: inherit;
@@ -213,8 +242,7 @@ section {
 }
 
 .pointers label > img {
-  max-width: 30px;
-  max-height: 30px;
+
 }
 
 .pointers input{
@@ -224,14 +252,15 @@ section {
   visibility: hidden;
 }
 
-.pointers:hover label, .pointers input:checked + label {
-  width:30px;
-  height:30px;
+.tiles:hover label,
+.pointers input:checked + label {
   display: block;
 }
 
-.pointers input:checked + label, .pointers label:hover {
-  background-color: grey;
+.tiles .icon:hover,
+.tiles label:hover,
+.pointers input:checked + label {
+  background-color: gold;
 }
 
 

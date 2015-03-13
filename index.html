@@ -30,8 +30,9 @@
            This container becomes the canvas,
            receiving background image and cursor
            additionally it can receive images via drag'n'drop
-      -->
+
       <div id="catch_the_click"></div>
+      -->
       <section id="container" class="stage_container icon-picture"></section>
 
       <!-- provide image for cursorization -->
@@ -68,23 +69,8 @@
       </aside>
 
       <aside id="actions">
-        <ul>
-          <li>
-            <a href="#" class="hd_image" id="toggle_hd_image">toggle hd image</a>
-          </li>
-          <li>
-            <a href="#" class="reset" id="reset_the_image">reset the image</a>
-          </li>
-          <li>
-            <a href="#" class="save" id="save_the_image">save the image</a>
-          </li>
-        </ul>
-      </aside>
-
-      <aside id="cursors">
-        <h1 class="heading hidden">Different pointer??? :</h1>
-
-        <ul class="pointers">
+        <h1 class="heading hidden">Select a pointer</h1>
+        <ul id="cursors" class="pointers tiles">
           <li>
             <input id="cursor_1" name="cursortype" type="radio" value="no_cursor"/>
             <label for="cursor_1" class="icon-ban-circle">
@@ -120,6 +106,16 @@
             <label for="cursor_6">
               <img src="assets/images/icons/cursor_mac_pointer_context.png" alt="cursor mac pointer context" />
             </label>
+          </li>
+        </ul>
+
+        <h1 class="heading hidden">What du you want to do next</h1>
+        <ul class="tiles">
+          <li>
+            <a href="#" class="reset icon icon-refresh" id="reset_the_image">clear the stage, start over again</a>
+          </li>
+          <li>
+            <a href="#" class="save icon icon-save" id="save_the_image">save the image</a>
           </li>
         </ul>
       </aside>
