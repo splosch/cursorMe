@@ -19,7 +19,8 @@ $(function( Dropzone ) {
 
       dropzoneOptions = {
         previewsContainer : false,
-        url               : "/#"
+        url               : "/#",
+        clickable         : [this.container, "#upload_image"]
       }
 
       this.cursorMeDropzone = new Dropzone(this.container, dropzoneOptions);

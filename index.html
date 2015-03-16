@@ -109,8 +109,30 @@
 
         <h1 class="heading hidden">What du you want to do next</h1>
         <ul class="tiles">
+          <li class="tile-add">
+            <a href="#" class="add icon icon-picture" id="upload_image">add image from device</a>
+          </li>
+          <li class="tile-add">
+            <form id="submit_image_url" action="/#">
+              <label for="bkg_img_url">Image-Url</label>
+              <input id="bkg_img_url" name="imagesrc" value="http://lorempixel.com/600/400/sports/CURSORME/" type="url" placeholder="http://www.abc.com/myimage.png" >
+
+              <button type="submit">GOOO!</button>
+
+              <p class="upload_info">You are only allowed to grab images via URL from domains / websites, that grant access to these images (CORS), anyhow to fetch any image is on the plan :) - Your'e doing art right ?!</p>
+            </form>
+
+            <a href="#" class="add icon icon-link" id="link_image">add image from link</a>
+          </li>
           <li>
-            <a href="#" class="reset icon icon-refresh" id="reset_the_image">clear the stage, start over again</a>
+            <a href="#" class="reset icon icon-trash" id="reset_bacground">remove current baclkground image</a>
+          </li>
+        </ul>
+
+        <h1 class="heading hidden">What du you want to do next</h1>
+        <ul class="tiles">
+          <li>
+            <a href="#" class="reset icon icon-trash" id="clear_the_stage">clear the stage, start over again</a>
           </li>
           <li>
             <a href="#" class="save icon icon-save" id="save_the_image">save the image</a>

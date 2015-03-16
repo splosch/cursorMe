@@ -213,6 +213,10 @@ section {
   background-color: tomato;
 }
 
+.tiles > li.tile-add {
+  background-color: springgreen;
+}
+
 .tiles > li:last-child {
   border:0;
 }

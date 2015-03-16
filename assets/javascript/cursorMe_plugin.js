@@ -73,8 +73,6 @@
               height: img.height
             });
 
-          this.removeClickCatcher();
-
           this.layer_background.clear();
           this.layer_background.add(backgroundImage);
 
@@ -113,10 +111,6 @@
         }.bind(this, imageObj);
 
         imageObj.src = imgUrl;
-      },
-
-      removeClickCatcher: function () {
-        $("#catch_the_click").remove();
       },
 
       saveAsImage: function () {
