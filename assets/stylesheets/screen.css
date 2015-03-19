@@ -239,7 +239,7 @@ section {
 }
 
 .tiles .icon:before {
-  font-size: 40px;
+  font-size: 32px;
   line-height: 50px;
   display: inline-block;
   text-decoration: none;
@@ -256,7 +256,8 @@ section {
 }
 
 .pointers label > img {
-
+  width: 40px;
+  padding: 5px;
 }
 
 .pointers input{
@@ -284,8 +285,6 @@ section {
 }
 
 #cursors .glyphicon-arrow-up:before{
-  font-size: 32px;
-
   -webkit-transform: rotate(-45deg);
   -moz-transform: rotate(-45deg);
   -o-transform: rotate(-45deg);
