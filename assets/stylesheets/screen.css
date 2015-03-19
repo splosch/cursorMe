@@ -213,6 +213,14 @@ section {
   background-color: tomato;
 }
 
+/* the first tile carries a icon for the whole tile-section */
+.tiles > .tiles-first {
+
+}
+.tiles:hover > .tiles-first {
+  display: none;
+}
+
 .tiles > li.tile-add {
   background-color: springgreen;
 }
@@ -274,6 +282,16 @@ section {
 .pointers input:checked + label {
   background-color: gold;
 }
+
+#cursors .glyphicon-arrow-up:before{
+  font-size: 32px;
+
+  -webkit-transform: rotate(-45deg);
+  -moz-transform: rotate(-45deg);
+  -o-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
 
 #coursored_imgs {
   position: fixed;
