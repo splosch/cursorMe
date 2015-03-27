@@ -213,6 +213,10 @@ section {
   background-color: tomato;
 }
 
+.tiles > .tile-add.image-url {
+  width: 250px;
+}
+
 /* the first tile carries a icon for the whole tile-section */
 .tiles > .tiles-first {
 
@@ -310,6 +314,40 @@ section {
 #coursored_imgs > li > img{
   max-width: 150px;
   max-height: 150px;
+}
+
+/* imgupload via url section */
+form#submit_image_url {
+  width: 250px;
+  height: 50px;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  padding: 7px;
+  position: relative;
+}
+
+form#submit_image_url button.icon {
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  right: 0;
+  top: 0;
+  border: none;
+}
+
+button#link_image {
+  float: right;
+  width: 50px;
+}
+
+form#submit_image_url > input {
+  height: 100%;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+  border-radius: 2px;
+  width: 190px;
+  font-size: 17px;
+  float: left;
 }
 
 /* ==========================================================================

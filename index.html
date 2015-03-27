@@ -34,39 +34,6 @@
       -->
       <section id="container" class="stage_container icon-picture"></section>
 
-      <!-- provide image for cursorization -->
-      <aside id="provide_background">
-        <h1 class="heading">Add your image or screenshot via (select)</h1>
-
-        <input id="image_via_url" name="upload" type="radio" value="image_via_url"/>
-        <label class="upload_type icon-link" for="url">
-          <h2> Image-Url </h2>
-
-          <form id="submit_image_url" action="/#">
-            <label for="bkg_img_url">Image-Url</label>
-            <input id="bkg_img_url" name="imagesrc" value="http://lorempixel.com/600/400/sports/CURSORME/" type="url" placeholder="http://www.abc.com/myimage.png" >
-
-            <button type="submit">GOOO!</button>
-
-            <p class="upload_info">You are only allowed to grab images via URL from domains / websites, that grant access to these images (CORS), anyhow to fetch any image is on the plan :) - Your'e doing art right ?!</p>
-          </form>
-
-        </label>
-
-        <input id="image_via_upload" name="upload" type="radio" value="image_via_upload"/>
-        <label class="upload_type icon-upload-alt" for="upload">
-          <h2> Select from your device </h2>
-
-          <!--input class="hidden" name="file" type="file" multiple /-->
-        </label>
-
-        <input id="image_via_dragndrop" name="upload" type="radio" value="image_via_dragndrop"/>
-        <label class="upload_type" for="dragndrop">
-          <h2> Drag an image onto this app </h2>
-
-        </label>
-      </aside>
-
       <aside id="actions">
         <h1 class="heading hidden">Select a pointer</h1>
         <ul id="cursors" class="pointers tiles">
@@ -117,17 +84,14 @@
           <li class="tile-add">
             <a href="#" class="icon glyphicon glyphicon-picture" id="upload_image">add image from device</a>
           </li>
-          <li class="tile-add">
+          <li class="tile-add image-url">
             <form id="submit_image_url" action="/#">
-              <label for="bkg_img_url">Image-Url</label>
+              <label for="bkg_img_url" class="hidden">Image-Url</label>
               <input id="bkg_img_url" name="imagesrc" value="http://lorempixel.com/600/400/sports/CURSORME/" type="url" placeholder="http://www.abc.com/myimage.png" >
 
-              <button type="submit">GOOO!</button>
-
-              <p class="upload_info">You are only allowed to grab images via URL from domains / websites, that grant access to these images (CORS), anyhow to fetch any image is on the plan :) - Your'e doing art right ?!</p>
+              <button type="submit" class="icon glyphicon glyphicon-link">GOOO!</button>
+              <p class="upload_info hidden">You are only allowed to grab images via URL from domains / websites, that grant access to these images (CORS), anyhow to fetch any image is on the plan :) - Your'e doing art right ?!</p>
             </form>
-
-            <a href="#" class="icon glyphicon glyphicon-link" id="link_image">add image from link</a>
           </li>
           <li>
             <a href="#" class="icon glyphicon glyphicon-ban-circle" id="reset_bacground">remove current background image</a>
