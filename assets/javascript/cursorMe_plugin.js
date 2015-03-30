@@ -53,6 +53,14 @@
       setBackgroundImage: function (image) {
         var imageObj;
 
+        // no image provided - reset background anyways
+        if (!image) {
+          this.layer_background.clear();
+          this.layer_background.removeChildren();
+          this.updateStage();
+          return;
+        }
+
         // allow image to be an Image() instance
         if (Image.prototype.isPrototypeOf(image) || typeof image === "object") {
           imageObj = image;

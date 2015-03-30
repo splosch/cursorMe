@@ -33,6 +33,12 @@ $(function( Dropzone ) {
     addEventHandlers: function () {
       this.page.on("submit", "form#submit_image_url", this.submitImageUrl.bind(this));
       this.page.on("click touchend keyup", "#save_the_image",  this.cursorMeCanvas.save);
+      this.page.on("click touchend keyup", "#reset_background",  function(){
+        var pointerImg  = $("input[type='radio'][name='cursortype']:checked + label").find("img").attr("src") || this.fallbackPointerImg;
+        $(this.container).empty();
+        this.cursorMeCanvas   = $.cursorMe($(this.container));
+        this.setPointer(pointerImg);
+      }.bind(this));
       this.page.on("change", "input[type='radio'][name='cursortype']", function(event){
         var newPointerImg  = $(event.target).siblings("label").find("img").attr("src");
 
