@@ -37,44 +37,43 @@
       <aside id="actions">
         <h1 class="heading hidden">Select a pointer</h1>
         <ul id="cursors" class="pointers tiles">
-          <li class="tiles-first">
+          <li class="tiles-first tile-cursor">
             <span class="icon glyphicon glyphicon-arrow-up"></span>
           </li>
-
-          <li>
-            <input id="cursor_1" name="cursortype" type="radio" value="no_cursor"/>
-            <label for="cursor_1" class="icon glyphicon glyphicon-ban-circle">
-              <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGP6zwAAAgcBApocMXEAAAAASUVORK5CYII=' alt="reset to no cursor" />
-            </label>
-          </li>
-          <li>
+          <li class="tile-cursor">
             <input id="cursor_2" name="cursortype" type="radio" value="cursor_mac_one_finger" checked/>
             <label for="cursor_2">
               <img src="assets/images/icons/cursor_mac_one_finger.png" alt="cursor mac one finger" />
             </label>
           </li>
-          <li>
+          <li class="tile-cursor">
             <input id="cursor_3" name="cursortype" type="radio" value="cursor_mac_full_hand"/>
             <label for="cursor_3">
               <img src="assets/images/icons/cursor_mac_full_hand.png" alt="cursor mac full hand" />
             </label>
           </li>
-          <li>
+          <li class="tile-cursor">
             <input id="cursor_4" name="cursortype" type="radio" value="cursor_mac_full_hand_grab"/>
             <label for="cursor_4">
               <img src="assets/images/icons/cursor_mac_full_hand_grab.png" alt="cursor mac full hand grab" />
             </label>
           </li>
-          <li>
+          <li class="tile-cursor">
             <input id="cursor_5" name="cursortype" type="radio" value="cursor_mac_pointer"/>
             <label for="cursor_5">
               <img src="assets/images/icons/cursor_mac_pointer.png" alt="cursor mac pointer" />
             </label>
           </li>
-          <li>
+          <li class="tile-cursor">
             <input id="cursor_6" name="cursortype" type="radio" value="cursor_mac_pointer_context"/>
             <label for="cursor_6">
               <img src="assets/images/icons/cursor_mac_pointer_context.png" alt="cursor mac pointer context" />
+            </label>
+          </li>
+          <li>
+            <input id="cursor_1" name="cursortype" type="radio" value="no_cursor"/>
+            <label for="cursor_1" class="icon glyphicon glyphicon-trash">
+              <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGP6zwAAAgcBApocMXEAAAAASUVORK5CYII=' alt="reset to no cursor" />
             </label>
           </li>
         </ul>
@@ -94,17 +93,17 @@
             </form>
           </li>
           <li>
-            <a href="#" class="icon glyphicon glyphicon-ban-circle" id="reset_bacground">remove current background image</a>
+            <a href="#" class="icon glyphicon glyphicon-trash" id="reset_bacground">remove current background image</a>
           </li>
         </ul>
 
         <h1 class="heading hidden">What du you want to do next</h1>
         <ul class="tiles">
-          <li>
-            <a href="#" class="icon glyphicon glyphicon-trash" id="clear_the_stage">clear the stage, start over again</a>
+          <li class="tile-actions">
+            <a href="#" class="icon glyphicon glyphicon-save" id="save_the_image">save the image</a>
           </li>
           <li>
-            <a href="#" class="icon glyphicon glyphicon-save" id="save_the_image">save the image</a>
+            <a href="#" class="icon glyphicon glyphicon-trash" id="clear_the_stage">clear the stage, start over again</a>
           </li>
         </ul>
       </aside>

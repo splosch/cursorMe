@@ -229,6 +229,14 @@ section {
   background-color: springgreen;
 }
 
+.tiles > li.tile-cursor {
+  background-color: dodgerblue;
+}
+
+.tiles > li.tile-actions {
+  background-color: darkorange;
+}
+
 .tiles > li:last-child {
   border:0;
 }
@@ -284,6 +292,7 @@ section {
 
 .tiles .icon:hover,
 .tiles label:hover,
+form#submit_image_url button.icon:hover,
 .pointers input:checked + label {
   background-color: gold;
 }
@@ -333,6 +342,7 @@ form#submit_image_url button.icon {
   right: 0;
   top: 0;
   border: none;
+  background-color: springgreen;
 }
 
 button#link_image {
