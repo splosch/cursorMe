@@ -125,7 +125,13 @@
         // present the rendered image with cursor
         this.stage.toImage({callback:
           function(img){
-            var li = $("<li>").append($(img));
+            var downloadlink = $("<a />").attr({
+                  text: "Click to download as PNG Image to your computer",
+                  download: "cursored_screen.png",
+                  href: img.src,
+                  target: "_blank"
+                }).append($(img)),
+                li = $("<li>").append(downloadlink);
 
             li.addClass("fadeInDown animated");
 

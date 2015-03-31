@@ -314,7 +314,7 @@ form#submit_image_url button.icon:hover,
   overflow: hidden;
 }
 
-#coursored_imgs > li > img{
+#coursored_imgs > li img{
   max-width: 150px;
   max-height: 150px;
 }
