@@ -203,7 +203,7 @@ section {
   width:auto;
 }
 
-.tiles > li {
+.tiles:hover > li {
   display: block;
   float: left;
   text-align: center;
@@ -218,12 +218,6 @@ section {
 }
 
 /* the first tile carries a icon for the whole tile-section */
-.tiles > .tiles-first {
-
-}
-.tiles:hover > .tiles-first {
-  display: none;
-}
 
 .tiles > li.tile-add {
   background-color: springgreen;
@@ -290,10 +284,10 @@ section {
   display: block;
 }
 
-.tiles .icon:hover,
-.tiles label:hover,
+.tiles:hover .icon:hover,
+.tiles:hover label:hover,
 form#submit_image_url button.icon:hover,
-.pointers input:checked + label {
+.pointers:hover input:checked + label {
   background-color: gold;
 }
 
