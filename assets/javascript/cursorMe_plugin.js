@@ -55,9 +55,11 @@
 
         // no image provided - reset background anyways
         if (!image) {
-          this.layer_background.clear();
           this.layer_background.removeChildren();
-          this.updateStage();
+          this.layer_background.clear();
+          this.layer_background.remove();
+          this.stage.draw();
+          this.updateStage({ width: this.options.width, height: this.options.height});
           return;
         }
 
@@ -161,10 +163,6 @@
         this.stage.content.style.position = "absolute";
         this.stage.content.style.left = "50%";
         this.stage.content.style.top = "50%";
-      },
-
-      addEventHandlers: function () {
-
       },
 
       setupCanvas: function () {

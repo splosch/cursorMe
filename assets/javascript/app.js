@@ -35,8 +35,8 @@ $(function( Dropzone ) {
       this.page.on("click touchend keyup", "#save_the_image",  this.cursorMeCanvas.save);
       this.page.on("click touchend keyup", "#reset_background",  function(){
         var pointerImg  = $("input[type='radio'][name='cursortype']:checked + label").find("img").attr("src") || this.fallbackPointerImg;
-        $(this.container).empty();
-        this.cursorMeCanvas   = $.cursorMe($(this.container));
+
+        this.cursorMeCanvas.setBackground();
         this.setPointer(pointerImg);
       }.bind(this));
       this.page.on("change", "input[type='radio'][name='cursortype']", function(event){
@@ -49,6 +49,10 @@ $(function( Dropzone ) {
       this.cursorMeDropzone.on("imagefullsize", function(file, image) {
         this.cursorMeCanvas.setBackground(image);
       }.bind(this));
+    },
+
+    removeEventHandlers: function() {
+
     },
 
     submitImageUrl: function ( event ) {
