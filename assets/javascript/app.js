@@ -3,6 +3,8 @@
 $(function( Dropzone ) {
   "use strict";
 
+  window._gaq = window._gaq || [];
+
   var app = {
     SEL_PAGE        : "#page",
     SEL_CONTAINER   : "#container",
@@ -55,6 +57,9 @@ $(function( Dropzone ) {
         this.cursorMeCanvas.setBackground();
         this.updatePointer();
       }.bind(this));
+
+      this.page.on(this.EVT_CLICK, "[data-track-interaction]", this.trackInteraction.bind(this));
+
     },
 
     submitImageUrl: function ( event ) {
@@ -84,6 +89,31 @@ $(function( Dropzone ) {
 
       this.cursorMeCanvas.setPointer(pointerImg || this.fallbackPointerImg);
     },
+
+    // track user interaction to see how the tool is used
+    trackInteraction: function (event) {
+      var newEvent = ["_trackEvent"],
+          trackables = ["category", "action", "label", "value", "non-interaction"],
+          is_valid_event,
+          data = JSON.parse($(event.target).attr("data-track-interaction")),
+          entry;
+
+      // go throug potential trackable data in the defined param order
+      // if any is missing - skip the rest since they depend on each other
+      while(entry = trackables.shift()) {
+        if(data.hasOwnProperty(entry) && data[entry]) {
+          newEvent.push(data[entry]);
+
+          if (entry === "action") {
+            is_valid_event = true;
+          }
+        } else {
+          break;
+        }
+      }
+
+      return is_valid_event && window._gaq.push(newEvent);
+    }
   };
 
   app.init();

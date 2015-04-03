@@ -39,37 +39,37 @@
         <ul id="cursors" class="pointers tiles">
           <li class="tile-cursor">
             <input id="cursor_2" name="cursortype" type="radio" value="cursor_mac_one_finger" checked/>
-            <label for="cursor_2">
+            <label for="cursor_2" data-track-interaction='{"category":"action","action":"change pointer", "label":"cursor_mac_one_finger"}'>
               <img src="assets/images/icons/cursor_mac_one_finger.png" alt="cursor mac one finger" />
             </label>
           </li>
           <li class="tile-cursor">
             <input id="cursor_3" name="cursortype" type="radio" value="cursor_mac_full_hand"/>
-            <label for="cursor_3">
+            <label for="cursor_3" data-track-interaction='{"category":"action","action":"change pointer", "label":"cursor_mac_full_hand"}'>
               <img src="assets/images/icons/cursor_mac_full_hand.png" alt="cursor mac full hand" />
             </label>
           </li>
           <li class="tile-cursor">
             <input id="cursor_4" name="cursortype" type="radio" value="cursor_mac_full_hand_grab"/>
-            <label for="cursor_4">
+            <label for="cursor_4" data-track-interaction='{"category":"action","action":"change pointer", "label":"cursor_mac_full_hand_grab"}'>
               <img src="assets/images/icons/cursor_mac_full_hand_grab.png" alt="cursor mac full hand grab" />
             </label>
           </li>
           <li class="tile-cursor">
             <input id="cursor_5" name="cursortype" type="radio" value="cursor_mac_pointer"/>
-            <label for="cursor_5">
+            <label for="cursor_5" data-track-interaction='{"category":"action","action":"change pointer", "label":"cursor_mac_pointer"}'>
               <img src="assets/images/icons/cursor_mac_pointer.png" alt="cursor mac pointer" />
             </label>
           </li>
           <li class="tile-cursor">
             <input id="cursor_6" name="cursortype" type="radio" value="cursor_mac_pointer_context"/>
-            <label for="cursor_6">
+            <label for="cursor_6" data-track-interaction='{"category":"action","action":"change pointer", "label":"cursor_mac_pointer_context"}'>
               <img src="assets/images/icons/cursor_mac_pointer_context.png" alt="cursor mac pointer context" />
             </label>
           </li>
           <li class="tile-cursor tile-cursor-none">
             <input id="cursor_1" name="cursortype" type="radio" value="no_cursor"/>
-            <label for="cursor_1" class="icon glyphicon glyphicon-trash">
+            <label for="cursor_1" class="icon glyphicon glyphicon-trash" data-track-interaction='{"category":"action","action":"change pointer", "label":"no_cursor"}'>
               <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGP6zwAAAgcBApocMXEAAAAASUVORK5CYII=' alt="reset to no cursor" />
             </label>
           </li>
@@ -78,26 +78,26 @@
         <h1 class="heading hidden">What du you want to do next</h1>
         <ul class="tiles">
           <li class="tile-add">
-            <a href="#" class="icon glyphicon glyphicon-picture" id="upload_image">add image from device</a>
+            <a href="#" class="icon glyphicon glyphicon-picture" id="upload_image" data-track-interaction='{"category":"action","action":"upload from device"}'>add image from device</a>
           </li>
           <li class="tile-add image-url">
             <form id="submit_image_url" action="/#">
               <label for="bkg_img_url" class="hidden">Image-Url</label>
               <input id="bkg_img_url" name="imagesrc" value="http://lorempixel.com/600/400/sports/CURSORME/" type="url" placeholder="http://www.abc.com/myimage.png" >
 
-              <button type="submit" class="icon glyphicon glyphicon-link">GOOO!</button>
+              <button type="submit" class="icon glyphicon glyphicon-link" data-track-interaction='{"category":"action","action":"upload from url"}'>GOOO!</button>
               <p class="upload_info hidden">You are only allowed to grab images via URL from domains / websites, that grant access to these images (CORS), anyhow to fetch any image is on the plan :) - Your'e doing art right ?!</p>
             </form>
           </li>
           <li>
-            <a href="#" class="icon glyphicon glyphicon-trash" id="reset_background">remove current background image</a>
+            <a href="#" class="icon glyphicon glyphicon-trash" id="reset_background" data-track-interaction='{"category":"action","action":"remove background"}'>remove current background image</a>
           </li>
         </ul>
 
         <h1 class="heading hidden">What du you want to do next</h1>
         <ul class="tiles">
           <li class="tile-actions">
-            <a href="#" class="icon glyphicon glyphicon-save" id="save_the_image">save the image</a>
+            <a href="#" class="icon glyphicon glyphicon-save" id="save_the_image" data-track-interaction='{"category":"action","action":"save to thumbs"}'>save the image</a>
           </li>
         </ul>
       </aside>
