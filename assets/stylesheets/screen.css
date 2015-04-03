@@ -310,6 +310,27 @@ form#submit_image_url button.icon:hover,
   transform: rotate(-45deg);
 }
 
+#coursored_imgs .glyphicon {
+  position: relative;
+  top: -54%;
+  display: inline-block;
+  color: white;
+  font-size: 32px;
+  text-decoration: none;
+  margin: 5px;
+  text-shadow: 0 0 10px black;
+  width: 40px;
+  text-align: center;
+  height: 50px;
+  line-height: 55px;
+  overflow: hidden;
+  vertical-align: bottom;
+}
+
+#coursored_imgs .glyphicon:hover {
+  font-size: 40px;
+}
+
 
 #coursored_imgs {
   position: fixed;

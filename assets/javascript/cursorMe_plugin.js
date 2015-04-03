@@ -127,13 +127,30 @@
         // present the rendered image with cursor
         this.stage.toImage({callback:
           function(img){
-            var downloadlink = $("<a />").attr({
+            var download_action = $("<a />").attr({
+                  class: "glyphicon glyphicon-save",
                   text: "Click to download as PNG Image to your computer",
                   download: "cursored_screen.png",
-                  href: img.src,
+                  href: "#save_this_image",
                   target: "_blank"
-                }).append($(img)),
-                li = $("<li>").append(downloadlink);
+                }).on("click touch keyup", function(){
+                  // take the imgs data uri and put it in the links destination href to allow download
+                  $(this).attr("href", $(this).parent().find("img").attr("src"));
+                }),
+                delete_action = $("<a />").attr({
+                  class: "glyphicon glyphicon-trash",
+                  text: "Click to Delete this Image - you got plenty left anyways right?!",
+                  href: "#remove_this_image"
+                }).on("click touch keyup", function(event){
+                  // remove the image from the savend images
+                  $(this).parents("li").remove();
+
+                  event.preventDefault();
+                }),
+                li = $("<li>")
+                      .append($(img))
+                      .append(download_action)
+                      .append(delete_action);
 
             li.addClass("fadeInDown animated");
 
