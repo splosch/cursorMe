@@ -150,7 +150,9 @@
                   event.preventDefault();
                 }),
                 li = $("<li>")
-                      .append($(img))
+                      .append($(img).attr({
+                        width: "150"
+                      }))
                       .append(download_action)
                       .append(delete_action);
 
