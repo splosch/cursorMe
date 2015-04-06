@@ -1,11 +1,10 @@
 cursorMe
 ========
 
-A tool to easily add a cursor to an image or screenshot.
+A web-tool to add a cursor to an image or screenshot.
 
 Demo: http://splosch.github.io/cursorMe/
 ------
-
 
 Based on HTML / Canvas / JS (jQuery + Kinetic.js)
 

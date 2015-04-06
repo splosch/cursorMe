@@ -3,8 +3,10 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title>Add a cursor to your image or screenshot - cursorme - made with html5, canvas and love.</title>
-    <meta name="description" content="cursorme - guide attention and explain workflows by adding eye-catching cursors to your screenshots and images. cursorme is a free yet convenient tool that does just one thing. No photoshop, no bloated UI, no fuzz, just add a cursor to your pictures, buttons and screens.">
+
+    <title>Add a cursor to your image or screenshot - CursorMe&copy; - made with html5, canvas and love.</title>
+    <meta name="description" content="CursorMe&copy; - guide attention and explain workflows by adding eye-catching cursors to your screenshots and images. cursorme is a free yet convenient tool that does just one thing. No photoshop, no bloated UI, no fuzz, just add a cursor to your pictures, buttons and screens.">
+
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -25,57 +27,86 @@
     <![endif]-->
 
     <div id="page">
-      <h1 class="heading">Poke around the cursor:</h1>
+      <h1 class="heading">Add a cursor to any image or screenshot:</h1>
+      <p>
+        CursorMe<sup>&copy;</sup> helps to explain and to outline processes or interaction in a simple yet intuitive way. By placing a pointer on buttons and links in images or screenshots, you highlight interaction or show interactivity of any tool or any process.<br>
+      </p>
 
-      <!--
-           This container becomes the canvas,
-           receiving background image and cursor
-           additionally it can receive images via drag'n'drop
-      -->
-      <section id="container" class="stage_container icon-picture"></section>
+      <h2>CursorMe<sup>&copy;</sup> is exactly what you look for if ...</h2>
+      <strong>You want to:</strong>
+      <ul>
+        <li>Add a cursor to an existing screenshot</li>
+        <li>Guide customers through your tool</li>
+        <li>Explain how something works</li>
+        <li>Mark important things in images</li>
+        <li>Do fun things with cursors ;)</li>
+      </ul>
+
+      <h2>CursorMe<sup>&copy;</sup> is not what you need if ...</h2>
+      <strong>You desperately look to:</strong>
+      <ul>
+        <li>Use bloated tools like photoshop</li>
+        <li>Add effects to your images</li>
+        <li>Add text, wild shapes or fancy shmoo to images</li>
+      </ul>
 
       <aside id="actions">
-        <h1 class="heading hidden">Select a pointer</h1>
+        <h2 class="heading hidden">Select a cursor:</h1>
         <ul id="cursors" class="pointers tiles">
           <li class="tile-cursor">
             <input id="cursor_2" name="cursortype" type="radio" value="cursor_mac_one_finger" checked/>
             <label for="cursor_2" data-track-interaction='{"category":"action","action":"change pointer", "label":"cursor_mac_one_finger"}'>
               <img src="assets/images/icons/cursor_mac_one_finger.png" alt="cursor mac one finger" />
+              <span class="hidden">one finger (Apple Mac)</span>
             </label>
           </li>
           <li class="tile-cursor">
             <input id="cursor_3" name="cursortype" type="radio" value="cursor_mac_full_hand"/>
             <label for="cursor_3" data-track-interaction='{"category":"action","action":"change pointer", "label":"cursor_mac_full_hand"}'>
               <img src="assets/images/icons/cursor_mac_full_hand.png" alt="cursor mac full hand" />
+              <span class="hidden">full hand (Apple Mac)</span>
             </label>
           </li>
           <li class="tile-cursor">
             <input id="cursor_4" name="cursortype" type="radio" value="cursor_mac_full_hand_grab"/>
             <label for="cursor_4" data-track-interaction='{"category":"action","action":"change pointer", "label":"cursor_mac_full_hand_grab"}'>
               <img src="assets/images/icons/cursor_mac_full_hand_grab.png" alt="cursor mac full hand grab" />
+              <span class="hidden">grabbing hand (Apple Mac)</span>
             </label>
           </li>
           <li class="tile-cursor">
             <input id="cursor_5" name="cursortype" type="radio" value="cursor_mac_pointer"/>
             <label for="cursor_5" data-track-interaction='{"category":"action","action":"change pointer", "label":"cursor_mac_pointer"}'>
               <img src="assets/images/icons/cursor_mac_pointer.png" alt="cursor mac pointer" />
+              <span class="hidden">pointer (Apple Mac)</span>
             </label>
           </li>
           <li class="tile-cursor">
             <input id="cursor_6" name="cursortype" type="radio" value="cursor_mac_pointer_context"/>
             <label for="cursor_6" data-track-interaction='{"category":"action","action":"change pointer", "label":"cursor_mac_pointer_context"}'>
               <img src="assets/images/icons/cursor_mac_pointer_context.png" alt="cursor mac pointer context" />
+              <span class="hidden">pointer contextmenu (Apple Mac)</span>
             </label>
           </li>
           <li class="tile-cursor tile-cursor-none">
             <input id="cursor_1" name="cursortype" type="radio" value="no_cursor"/>
             <label for="cursor_1" class="icon glyphicon glyphicon-trash" data-track-interaction='{"category":"action","action":"change pointer", "label":"no_cursor"}'>
               <img src='data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR4nGP6zwAAAgcBApocMXEAAAAASUVORK5CYII=' alt="reset to no cursor" />
+              <span class="hidden">no cursor (reset)</span>
             </label>
           </li>
         </ul>
 
-        <h1 class="heading hidden">What du you want to do next</h1>
+        <h1 class="heading hidden">Adding an image or screenshot</h1>
+        <p class="hidden">
+          You can use images or screenshots from different sources and of one of these formats (GIF, JPEG, PNG) though CursorMe<sup>&copy;</sup> will work best with PNGs <span title="Bigger images will be supported in the near future.">not wider than your screen is.</span>
+          <br>
+          Add images from your device (pc, mac, phone ...) by tapping the grey background of CursorMe<sup>&copy;</sup> or the <span class="glyphicon glyphicon-picture">Green - Picture Button</span>.
+          <br>
+          You can add images as well by dragging an Image-File from your computer onte the grey background of CursorMe<sup>&copy;</sup>.
+          <br>
+          If you want to add images or screens from a website or external URL, provide a link and submit this file with clicking the <span class="icon glyphicon glyphicon-link">Green - Link Button</span>.
+        </p>
         <ul class="tiles">
           <li class="tile-add">
             <a href="#" class="icon glyphicon glyphicon-picture" id="upload_image" data-track-interaction='{"category":"action","action":"upload from device"}'>add image from device</a>
@@ -102,6 +133,18 @@
         </ul>
       </aside>
 
+      <!--
+           This container becomes the canvas,
+           receiving background image and cursor
+           additionally it can receive images via drag'n'drop
+      -->
+      <section id="container" class="stage_container icon-picture"></section>
+
+      <!--
+           the cursored images section takes care of your images
+           once you attached a cursor and saved it
+           here the generated images can be saved to your device or removed
+      -->
       <aside>
         <ul id="coursored_imgs">
           <!-- here all the saved images will be added for further usage / overview -->
