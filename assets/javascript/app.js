@@ -1,4 +1,4 @@
- /* globals $, Dropzone */
+ /* globals $, Dropzone, ga */
 
 $(function( Dropzone ) {
   "use strict";
@@ -92,17 +92,23 @@ $(function( Dropzone ) {
 
     // track user interaction to see how the tool is used
     trackInteraction: function (event) {
-      var newEvent = ["_trackEvent"],
-          trackables = ["category", "action", "label", "value", "non-interaction"],
+      var tracking_options = { hitType : "event" },
+          trackables = ["category", "action", "label", "value"],
+          ga_option_map = {
+                            "category"  : "eventCategory",    // Required.
+                            "action"    : "eventAction",      // Required.
+                            "label"     : "eventLabel",
+                            "value"     : "eventValue"
+                          },
           is_valid_event,
-          data = JSON.parse($(event.target).attr("data-track-interaction")),
+          data = JSON.parse($(event.target).closest("[data-track-interaction]").attr("data-track-interaction")),
           entry;
 
       // go throug potential trackable data in the defined param order
       // if any is missing - skip the rest since they depend on each other
       while(entry = trackables.shift()) {
         if(data.hasOwnProperty(entry) && data[entry]) {
-          newEvent.push(data[entry]);
+          tracking_options[ga_option_map[entry]] = data[entry];
 
           if (entry === "action") {
             is_valid_event = true;
@@ -112,10 +118,14 @@ $(function( Dropzone ) {
         }
       }
 
-      return is_valid_event && window._gaq.push(newEvent);
+      if (is_valid_event && typeof ga === "function") {
+        ga("send", tracking_options);
+      }
+
+      return is_valid_event;
     }
   };
 
   app.init();
 
-}( Dropzone ));
+}( Dropzone));
