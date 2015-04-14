@@ -92,21 +92,21 @@ $(function( Dropzone ) {
 
     // track user interaction to see how the tool is used
     trackInteraction: function (event) {
-      var tracking_options = { hitType : "event" },
-          trackables = ["category", "action", "label", "value"],
-          ga_option_map = {
-                            "category"  : "eventCategory",    // Required.
-                            "action"    : "eventAction",      // Required.
-                            "label"     : "eventLabel",
-                            "value"     : "eventValue"
-                          },
+      var tracking_options    = { hitType : "event" },
+          ordered_trackables  = ["category", "action", "label", "value"],
+          ga_option_map       = {
+                                  "category"  : "eventCategory",    // Required.
+                                  "action"    : "eventAction",      // Required.
+                                  "label"     : "eventLabel",
+                                  "value"     : "eventValue"
+                                },
           is_valid_event,
           data = JSON.parse($(event.target).closest("[data-track-interaction]").attr("data-track-interaction")),
           entry;
 
       // go throug potential trackable data in the defined param order
       // if any is missing - skip the rest since they depend on each other
-      while(entry = trackables.shift()) {
+      while(entry = ordered_trackables.shift()) {
         if(data.hasOwnProperty(entry) && data[entry]) {
           tracking_options[ga_option_map[entry]] = data[entry];
 

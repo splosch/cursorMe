@@ -133,7 +133,7 @@
                   download: "cursored_screen.png",
                   href: "#save_this_image",
                   target: "_blank",
-                  dataTrackInteraction: '{"category":"action","action":"save file"}'
+                  "data-track-interaction" : '{"category":"image","action":"save","label":"save_to_file"}'
                 }).on("click keyup", function(){
                   // take the imgs data uri and put it in the links destination href to allow download
                   $(this).attr("href", $(this).parent().find("img").attr("src"));
@@ -142,7 +142,7 @@
                   class: "glyphicon glyphicon-trash",
                   text: "Click to Delete this Image - you got plenty left anyways right?!",
                   href: "#remove_this_image",
-                  dataTrackInteraction: '{"category":"action","action":"delete file"}'
+                  "data-track-interaction" : '{"category":"thumb","action":"delete","label":"delete_thumb"}'
                 }).on("click touch keyup", function(event){
                   // remove the image from the savend images
                   $(this).parents("li").remove();
