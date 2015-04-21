@@ -393,6 +393,58 @@ form#submit_image_url > input {
   float: left;
 }
 
+footer {
+  position: fixed;
+  bottom: 0;
+  padding: 10px;
+  text-align: center;
+  display: block;
+  width: 100%;
+  -moz-box-sizing: border-box;
+       box-sizing: border-box;
+}
+
+#ga_tracking_opt_out {
+  -webkit-transition: bottom 0.6s;
+     -moz-transition: bottom 0.6s;
+          transition: bottom 0.6s;
+
+  margin: auto;
+  max-width: 400px;
+  text-align: justify;
+  position: absolute;
+  bottom: -800px;
+  left: 50%;
+  margin-left: -200px;
+  background: white;
+  padding: 20px 20px 40px;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
+}
+
+#ga_tracking_opt_out:hover {
+  bottom: 0;
+}
+
+#ga_tracking_opt_out > a[href="ga_tracking_opt_out"] {
+  position: fixed;
+  bottom: 0;
+  padding: 20px 10px;
+  color: #666;
+  text-decoration: none;
+  display: block;
+  width: 400px;
+  text-align: center;
+
+  -webkit-transition: bottom 0.6s;
+     -moz-transition: bottom 0.6s;
+          transition: bottom 0.6s;
+}
+
+#ga_tracking_opt_out:hover > a[href="ga_tracking_opt_out"] {
+  bottom: -50px;
+}
+
 /* ==========================================================================
    Helper classes
    ========================================================================== */
