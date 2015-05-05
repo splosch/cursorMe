@@ -154,6 +154,7 @@
 
     <footer>
       <div id="ga_tracking_opt_out">
+
         <a href="ga_tracking_opt_out">This tool uses Google Analytics Tracking. Details? </a>
 
         <h1 class="hidden">User Tracking - to improve this tool.</h2>
@@ -162,7 +163,13 @@
 
         <strong>What is tracked, and what isn't?</strong>
         <p>The base for tracking is google analytics. I took measures to reduce the amount of data and the level of detail that i track to a minimum. I make use of anonymize-ip setting to just get a rough idea from which region users accessing this tool, to prepare localization. I track via "events" what features of the tool are mostly used.</p>
-        <p>If you feel that this is too much information tracked, you can <a href="javascript:gaOptout()">opt-out of Google Analytics tracking</a> for this website.</p>
+        <strong>Google Analytics tracking on this website is ...</strong>
+        <p id="toggle_ga_tracking" class="radio_button">
+          <input id="ga_tracking_on" name="track" type="radio" value="1" />
+          <label for="ga_tracking_on"><span class="hidden">Tracking is </span>ON</label>
+          <input id="ga_tracking_off" name="track" type="radio" value="0" />
+          <label for="ga_tracking_off"><span class="hidden">Tracking is </span>OFF</label>
+        </p>
       </div>
     </footer>
   </body>
@@ -184,16 +191,33 @@
      * https://developers.google.com/analytics/devguides/collection/gajs/?hl=de#disable
      */
 
-    (function(){
-      var gaProperty = 'UA-60186419-1';
-      var disableStr = 'ga-disable-' + gaProperty;
-      if (document.cookie.indexOf(disableStr + '=true') > -1) {
-        window[disableStr] = true;
+    (function(window, document){
+      var ga = {
+        disableStr : 'ga-disable-' + 'UA-60186419-1',
+        isDisabled : false,
+        radio_button_selector: "input[name='track'][type='radio']",
+
+        optout : function () {
+          document.cookie = this.disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+          window[this.disableStr] = this.isDisabled = true;
+        },
+        revert_optout : function() {
+          document.cookie = this.disableStr + '=false; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+          this.isDisabled = false;
+          delete window[this.disableStr];
+        }
+      };
+
+      ga.isDisabled = document.cookie.indexOf(ga.disableStr + '=true') > -1;
+
+      if (ga.isDisabled) {
+        ga.optout();
       }
-      window.gaOptout = function () {
-        document.cookie = disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
-        window[disableStr] = true;
-      }
+
+      document.querySelector(ga.radio_button_selector + "[value='"+ (ga.isDisabled ? 0 : 1) +"']").checked = true;
+      document.querySelector(ga.radio_button_selector + "[value='"+ (ga.isDisabled ? 1 : 0) +"']").checked = false;
+
+      window.my_ga = ga;
     }(window,document));
 
 
@@ -202,6 +226,7 @@
     e=o.createElement(i);r=o.getElementsByTagName(i)[0];
     e.src='//www.google-analytics.com/analytics.js';
     r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+
     ga('create','UA-60186419-1','auto');ga('set', 'anonymizeIp', true);ga('send','pageview');
   </script>
 </html>

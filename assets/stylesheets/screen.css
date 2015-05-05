@@ -445,6 +445,142 @@ footer {
   bottom: -50px;
 }
 
+
+/* =======================================
+   Radio Button Switch
+   ======================================= */
+
+/* make radio-button group appear as a switch
+
+   <div class="radio_button_group">
+    <input id="bar" name="foo" value="0">
+    <label for="bar">OFF</label>
+    <input id="baz" name="foo" value="1">
+    <label for="baz">ON</label>
+   </div>
+*/
+
+.radio_button > input[type='radio'] {
+  display: none;
+}
+
+.radio_button > label {
+  width: 167%;
+  display: block;
+  overflow: hidden;
+  height: 100%;
+  line-height: 2em;
+  position: absolute;
+}
+
+.radio_button {
+  margin-left: auto;
+  margin-right: auto;
+  width: 4.4em;
+  background: #ccc;
+  height: 2em;
+  overflow: hidden;
+  border-radius: 5px;
+  position: relative;
+  box-shadow: -1px -1px 1px 0px rgba(0,0,0,0.5), 1px 1px 1px 0px rgba(255,255,255,0.8), -1px -1px 6px 1px rgba(0,0,0,0.1);
+}
+
+.radio_button > input + label {
+  z-index:1;
+  background-color: transparent;
+  background: none;
+  padding: 0 0.5em;
+  box-sizing:border-box;
+
+  -webkit-transition: margin-left 0.2s;
+     -moz-transition: margin-left 0.2s;
+          transition: margin-left 0.2s;
+}
+
+.radio_button > input:focus + label {
+  outline: thin dotted #333;
+  outline: 4px auto -webkit-focus-ring-color;
+  outline-offset: -3px;
+}
+
+.radio_button > input:checked + label {
+  background-color: #ccc;
+  background-image: -moz-linear-gradient(left, lawngreen, tomato), to(tomato));
+  background-image: -webkit-linear-gradient(left, lawngreen, tomato);
+  background-image: -o-linear-gradient(left, lawngreen, tomato);
+  background-image: linear-gradient(to right, lawngreen 0%, lawngreen 50%, tomato 50%, tomato 100%);
+  background-repeat: repeat-x;
+  z-index:0;
+  color: initial;
+}
+
+.radio_button > input[value='0'] + label {
+  text-align: right;
+  margin-left: 0%;
+}
+
+.radio_button > input[value='1'] + label {
+  text-align: left;
+  margin-left: -66%;
+}
+
+.radio_button > input[value='0']:checked + label {
+  margin-left: -66%;
+}
+.radio_button > input[value='1']:checked + label {
+  margin-left: 0;
+}
+
+
+/* neither of the input[type='radio'] is checked
+ * in case of undefined state the last element overrules to style as "undefined"
+ */
+.radio_button > input:not(:checked) ~ input:not(:checked) + label {
+  margin-left: -33%;
+}
+
+.radio_button > input:not(:checked) ~ input:not(:checked) + label:after {
+  background-color: #ccc;
+  content: "";
+  width: 100%;
+  display: block;
+  height: 100%;
+  top: 0;
+  left: 0;
+  position: absolute;
+  z-index: 2;
+}
+
+
+.radio_button > input:checked + label:before,
+.radio_button > input:not(:checked) ~ input:not(:checked) + label:before {
+  content: "|";
+  background-color: white;
+  width: 1.2em;
+  height: auto;
+  display: block;
+  position: absolute;
+  border-radius: 2px;
+
+  box-shadow: 0px 0px 0px 1px rgba(255,255,255,1), 0px 0px 6px 4px rgba(0,0,0,0.3), 0px 0px 0px 2px #999, 0px 0px 5px 1px rgba(0,0,0,0.3);
+
+  left: 50%;
+  margin-left: -0.6em;
+  -moz-box-sizing: border-box;
+       box-sizing: border-box;
+  top: 2px;
+  bottom: 2px;
+  z-index:1;
+  line-height: 1.6em;
+  text-align: center;
+  color: #999;
+}
+
+.radio_button > input:not(:checked) ~ input:not(:checked) + label:before {
+  z-index: 3;
+}
+
+
 /* ==========================================================================
    Helper classes
    ========================================================================== */

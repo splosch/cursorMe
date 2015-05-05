@@ -7,13 +7,17 @@ Demo: http://splosch.github.io/cursorMe/
 ------
 
 Based on HTML / Canvas / JS (jQuery + Kinetic.js)
-
-There are lots of JS Libraries that aim to ease interaction with canvas, I choose Kinetic.js because of this article:
-http://www.softr.li/blog/2012/06/20/which-html5-canvas-javascript-library-should-i-use
+* Kinetic.js is not under active development, still decided to use it since it easy to use
 
 Uses jasmine & imagediff for unittesting
 * http://jasmine.github.io/
 * https://github.com/HumbleSoftware/js-imagediff/
+
+"Build, Measure, Learn" development principle
+* uses Event-based tracking of google analytics
+* see how users behave
+* which features are used to which degree
+* are users able to get a image out of the tool
 
 Get it running
 ----------

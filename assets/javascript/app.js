@@ -11,6 +11,7 @@ $(function( Dropzone ) {
     SEL_POINTER     : "input[type='radio'][name='cursortype']",
     SEL_POINTER_IMG : "input[type='radio'][name='cursortype']:checked + label img",
     EVT_CLICK       : "click touchend keyup",
+    SEL_TOGGLE_GA   : "input[type='radio'][name='track']",
 
     action_el : {
                   save:  "#save_the_image",
@@ -60,6 +61,10 @@ $(function( Dropzone ) {
 
       this.page.on(this.EVT_CLICK, "[data-track-interaction]", this.trackInteraction.bind(this));
 
+      $("#toggle_ga_tracking").on("change", this.SEL_TOGGLE_GA, function(event){
+        this.toggleGoogleAnalyticsTracking($(event.currentTarget).is("[value=1]"));
+      }.bind(this));
+
     },
 
     submitImageUrl: function ( event ) {
@@ -90,7 +95,11 @@ $(function( Dropzone ) {
       this.cursorMeCanvas.setPointer(pointerImg || this.fallbackPointerImg);
     },
 
-    // track user interaction to see how the tool is used
+    /* interaction tracking interface for google analytics
+     * is fired from interaction with `[data-track-interaction]` data-attribute flagged items
+     * the attributes value contains data required for genearating a tracking event
+     * see https://developers.google.com/analytics/devguides/ for API details
+     */
     trackInteraction: function (event) {
       var tracking_options    = { hitType : "event" },
           ordered_trackables  = ["category", "action", "label", "value"],
@@ -102,15 +111,17 @@ $(function( Dropzone ) {
                                 },
           is_valid_event,
           data = JSON.parse($(event.target).closest("[data-track-interaction]").attr("data-track-interaction")),
-          entry;
+          current_entry;
 
-      // go throug potential trackable data in the defined param order
-      // if any is missing - skip the rest since they depend on each other
-      while(entry = ordered_trackables.shift()) {
-        if(data.hasOwnProperty(entry) && data[entry]) {
-          tracking_options[ga_option_map[entry]] = data[entry];
+      /* as long as one `current_entry` is left,
+       * use the extracted data, and go through object keys order defined by ordered_trackables
+       * if any required data is missing - skip the rest since they depend on each other
+       */
+      while(current_entry = ordered_trackables.shift()) {
+        if(data.hasOwnProperty(current_entry) && data[current_entry]) {
+          tracking_options[ga_option_map[current_entry]] = data[current_entry];
 
-          if (entry === "action") {
+          if (current_entry === "action") {
             is_valid_event = true;
           }
         } else {
@@ -123,7 +134,16 @@ $(function( Dropzone ) {
       }
 
       return is_valid_event;
+    },
+
+    toggleGoogleAnalyticsTracking: function ( do_track ) {
+      if (do_track) {
+        window.my_ga.revert_optout();
+      } else {
+        window.my_ga.optout();
+      }
     }
+
   };
 
   app.init();
