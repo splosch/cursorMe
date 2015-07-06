@@ -340,7 +340,7 @@ form#submit_image_url button.icon:hover,
 
 #coursored_imgs {
   position: fixed;
-  bottom: 0;
+  bottom: 2%;
   display: block;
   width: 100%;
   text-align: center;
