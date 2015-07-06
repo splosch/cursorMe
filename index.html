@@ -185,6 +185,75 @@
   <script type="text/javascript" src="assets/javascript/app.js"></script>
 
   <script>
+    /*\
+    |*|
+    |*|  :: cookies.js ::
+    |*|
+    |*|  A complete cookies reader/writer framework with full unicode support.
+    |*|
+    |*|  Revision #1 - September 4, 2014
+    |*|
+    |*|  https://developer.mozilla.org/en-US/docs/Web/API/document.cookie
+    |*|  https://developer.mozilla.org/User:fusionchess
+    |*|
+    |*|  This framework is released under the GNU Public License, version 3 or later.
+    |*|  http://www.gnu.org/licenses/gpl-3.0-standalone.html
+    |*|
+    |*|  Syntaxes:
+    |*|
+    |*|  * docCookies.setItem(name, value[, end[, path[, domain[, secure]]]])
+    |*|  * docCookies.getItem(name)
+    |*|  * docCookies.removeItem(name[, path[, domain]])
+    |*|  * docCookies.hasItem(name)
+    |*|  * docCookies.keys()
+    |*|
+    \*/
+
+    (function(window, document){
+      "use strict";
+
+      window.docCookies = {
+        getItem: function (sKey) {
+          if (!sKey) { return null; }
+          return decodeURIComponent(document.cookie.replace(new RegExp("(?:(?:^|.*;)\\s*" + encodeURIComponent(sKey).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=\\s*([^;]*).*$)|^.*$"), "$1")) || null;
+        },
+        setItem: function (sKey, sValue, vEnd, sPath, sDomain, bSecure) {
+          if (!sKey || /^(?:expires|max\-age|path|domain|secure)$/i.test(sKey)) { return false; }
+          var sExpires = "";
+          if (vEnd) {
+            switch (vEnd.constructor) {
+              case Number:
+                sExpires = vEnd === Infinity ? "; expires=Fri, 31 Dec 9999 23:59:59 GMT" : "; max-age=" + vEnd;
+                break;
+              case String:
+                sExpires = "; expires=" + vEnd;
+                break;
+              case Date:
+                sExpires = "; expires=" + vEnd.toUTCString();
+                break;
+            }
+          }
+          document.cookie = encodeURIComponent(sKey) + "=" + encodeURIComponent(sValue) + sExpires + (sDomain ? "; domain=" + sDomain : "") + (sPath ? "; path=" + sPath : "") + (bSecure ? "; secure" : "");
+          return true;
+        },
+        removeItem: function (sKey, sPath, sDomain) {
+          if (!this.hasItem(sKey)) { return false; }
+          document.cookie = encodeURIComponent(sKey) + "=; expires=Thu, 01 Jan 1970 00:00:00 GMT" + (sDomain ? "; domain=" + sDomain : "") + (sPath ? "; path=" + sPath : "");
+          return true;
+        },
+        hasItem: function (sKey) {
+          if (!sKey) { return false; }
+          return (new RegExp("(?:^|;\\s*)" + encodeURIComponent(sKey).replace(/[\-\.\+\*]/g, "\\$&") + "\\s*\\=")).test(document.cookie);
+        },
+        keys: function () {
+          var aKeys = document.cookie.replace(/((?:^|\s*;)[^\=]+)(?=;|$)|^\s*|\s*(?:\=[^;]*)?(?:\1|$)/g, "").split(/\s*(?:\=[^;]*)?;\s*/);
+          for (var nLen = aKeys.length, nIdx = 0; nIdx < nLen; nIdx++) { aKeys[nIdx] = decodeURIComponent(aKeys[nIdx]); }
+          return aKeys;
+        }
+      };
+
+    }(window,document));
+
     /*
      * Google Analytics Tracking incl. Opt-Out Cookie Support
      * for more Details see:
@@ -192,23 +261,26 @@
      */
 
     (function(window, document){
+      "use strict";
       var ga = {
-        disableStr : 'ga-disable-' + 'UA-60186419-1',
+        disableStr : "ga-disable-" + "UA-60186419-1",
         isDisabled : false,
         radio_button_selector: "input[name='track'][type='radio']",
 
         optout : function () {
-          document.cookie = this.disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+          //document.cookie = this.disableStr + '=true; expires=Thu, 31 Dec 2099 23:59:59 UTC; path=/';
+          window.docCookies.setItem(this.disableStr, true, "Thu, 31 Dec 2099 23:59:59 UTC", "/");
           window[this.disableStr] = this.isDisabled = true;
         },
         revert_optout : function() {
-          document.cookie = this.disableStr + '=false; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+          //document.cookie = this.disableStr + '=false; expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+          window.docCookies.removeItem(this.disableStr);
           this.isDisabled = false;
           delete window[this.disableStr];
         }
       };
 
-      ga.isDisabled = document.cookie.indexOf(ga.disableStr + '=true') > -1;
+      ga.isDisabled = window.docCookies.getItem(ga.disableStr) || false;
 
       if (ga.isDisabled) {
         ga.optout();
@@ -224,9 +296,9 @@
     (function(b,o,i,l,e,r){b.GoogleAnalyticsObject=l;b[l]||(b[l]=
     function(){(b[l].q=b[l].q||[]).push(arguments)});b[l].l=+new Date;
     e=o.createElement(i);r=o.getElementsByTagName(i)[0];
-    e.src='//www.google-analytics.com/analytics.js';
-    r.parentNode.insertBefore(e,r)}(window,document,'script','ga'));
+    e.src="//www.google-analytics.com/analytics.js";
+    r.parentNode.insertBefore(e,r)}(window,document,"script","ga"));
 
-    ga('create','UA-60186419-1','auto');ga('set', 'anonymizeIp', true);ga('send','pageview');
+    ga("create","UA-60186419-1","auto");ga("set", "anonymizeIp", true);ga("send","pageview");
   </script>
 </html>
