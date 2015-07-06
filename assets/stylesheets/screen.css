@@ -414,7 +414,7 @@ footer {
   text-align: justify;
   position: absolute;
   bottom: -800px;
-  left: 50%;
+  right: 1%;
   margin-left: -200px;
   background: white;
   padding: 20px 20px 40px;
