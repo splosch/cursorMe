@@ -48,77 +48,82 @@
         this.setupCanvas();
       },
 
-      // image is prefferably an instance of Image(), loaded or not doesnt matter
-      // alternatively image can be an absolute image-url
+      // remove all BAckgroundImage and clear the stage
+      resetBackgroundImage: function () {
+        this.layer_background.removeChildren();
+        this.layer_background.clear();
+        this.layer_background.remove();
+        this.stage.draw();
+        this.updateStage({ width: this.options.width, height: this.options.height});
+      },
+
+      /*
+       * Returns true if 'thing' is an image object
+       * False if anything else
+       */
+      isImageObject: function (thing) {
+        var isImage = (Image.prototype.isPrototypeOf(thing) || typeof thing === "object");
+
+        return isImage;
+      },
+
+      // setBackgroundImage can only be called with no param
+      // or an image of type Image in loaded state
       setBackgroundImage: function (image) {
-        var imageObj;
-
         // no image provided - reset background anyways
-        if (!image) {
-          this.layer_background.removeChildren();
-          this.layer_background.clear();
-          this.layer_background.remove();
-          this.stage.draw();
-          this.updateStage({ width: this.options.width, height: this.options.height});
-          return;
+        // empty setBackgroundImage() call is used to clear the stage
+        if (!this.isImageObject(image)) {
+          return this.resetBackgroundImage();
         }
 
-        // allow image to be an Image() instance
-        if (Image.prototype.isPrototypeOf(image) || typeof image === "object") {
-          imageObj = image;
-        } else {
-          imageObj = new Image();
+        // since image is already loaded currentSrc will contain base64 encoded PNG
+        if (image.currentSrc) {
+          var backgroundImage;
 
-          // some more validation?
-          //
-          if(typeof image === "string") {
-            imageObj.src = image;
-          }
-        }
-
-        $(imageObj).imgLoad(function(img){
-          var backgroundImage = new Kinetic.Image({
-              image: img,
-              width: img.width,
-              height: img.height
-            });
+          backgroundImage = new Kinetic.Image({
+            image: image,
+            width: image.width,
+            height: image.height
+          });
 
           this.layer_background.clear();
           this.layer_background.add(backgroundImage);
 
-          this.updateStage({ width: img.width, height: img.height});
-        }.bind(this, imageObj));
+          this.updateStage({ width: image.width, height: image.height});
+        }
       },
 
       setPointerImage: function (imgUrl) {
         var imageObj = new Image();
 
-        imageObj.onload = function(img) {
-          var pointerImage = new Kinetic.Image({
-              image: img,
-              x: this.stage.getWidth() / 2,
-              y: this.stage.getHeight() / 2,
-              width: img.width,
-              height: img.height,
-              draggable: true
+        $(imageObj).on("load",
+          function(img, event) {
+            var pointerImage = new Kinetic.Image({
+                image: img,
+                x: this.stage.getWidth() / 2,
+                y: this.stage.getHeight() / 2,
+                width: img.width,
+                height: img.height,
+                draggable: true
+              });
+
+            // cursor styling
+            pointerImage.on("mouseover", function () {
+              document.body.style.cursor = "pointer";
+            });
+            pointerImage.on("mouseout", function () {
+              document.body.style.cursor = "default";
             });
 
-          // cursor styling
-          pointerImage.on("mouseover", function () {
-            document.body.style.cursor = "pointer";
-          });
-          pointerImage.on("mouseout", function () {
-            document.body.style.cursor = "default";
-          });
+            this.layer_cursor.clear();
+            this.layer_cursor.removeChildren();
+            this.layer_cursor.add(pointerImage);
 
-          this.layer_cursor.clear();
-          this.layer_cursor.removeChildren();
-          this.layer_cursor.add(pointerImage);
-
-          this.options.pointerImageUrl = imgUrl;
-          this.stage.add(this.layer_cursor);
-          this.stage.draw();
-        }.bind(this, imageObj);
+            this.options.pointerImageUrl = imgUrl;
+            this.stage.add(this.layer_cursor);
+            this.stage.draw();
+          }.bind(this, imageObj)
+        );
 
         imageObj.src = imgUrl;
       },
