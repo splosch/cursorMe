@@ -16,8 +16,7 @@ $(function( Dropzone ) {
     action_el : {
                   save:  "#save_the_image",
                   reset: "#reset_background",
-                  upload: "#upload_image",
-                  submit: "#submit_image_url"
+                  upload: "#upload_image"
                 },
 
     cursorMeDropzone: {},
@@ -39,8 +38,6 @@ $(function( Dropzone ) {
     },
 
     addEventHandlers: function () {
-      // handle load image from external url
-      this.page.on("submit", this.action_el.submit, this.submitImageUrl.bind(this));
 
       // set background image if dropzone detects that a image was added to the canvas
       this.cursorMeDropzone.on("imagefullsize", function(file, image) {
@@ -65,16 +62,6 @@ $(function( Dropzone ) {
         this.toggleGoogleAnalyticsTracking($(event.currentTarget).is("[value=1]"));
       }.bind(this));
 
-    },
-
-    submitImageUrl: function ( event ) {
-      var imageUrl = $(event.target).find("input[type='url']").val() ;
-
-      if (imageUrl) {
-        this.setBackgroundUrl(imageUrl);
-      }
-
-      event.preventDefault();
     },
 
     // interact with cursorMe - stage
