@@ -14,7 +14,7 @@
  *  #public_methods
  *  @drawBackgroundImage(imgData)
  *  @changePointer(imgData)
- *  @saveAsImage(canvas)
+ *  @createImage(canvas)
  *
  *  #evt_listeners
  *  @pointer.isDraggable()
@@ -67,29 +67,32 @@
         return isImage;
       },
 
-      // setBackgroundImage can only be called with no param
-      // or an image of type Image in loaded state
-      setBackgroundImage: function (image) {
+      /* setBackgroundImage
+       * sets the main image on the stage or clears the current stage-background image if no image is given
+       *
+       * @param image     - optional  - Image() Object that has been loaded already
+       * @param callback  - optional  - callback to be executed once the BackgroundImage has been set
+       */
+      setBackgroundImage: function (image, callback) {
         // no image provided - reset background anyways
         // empty setBackgroundImage() call is used to clear the stage
-        if (!this.isImageObject(image)) {
-          return this.resetBackgroundImage();
+        if (!this.isImageObject(image) || !image.currentSrc) {
+          return this.resetBackgroundImage(callback);
         }
 
-        // since image is already loaded currentSrc will contain base64 encoded PNG
-        if (image.currentSrc) {
-          var backgroundImage;
-
-          backgroundImage = new Kinetic.Image({
+        var backgroundImage = new Kinetic.Image({
             image: image,
             width: image.width,
             height: image.height
-          });
+        });
 
-          this.layer_background.clear();
-          this.layer_background.add(backgroundImage);
+        this.layer_background.clear();
+        this.layer_background.add(backgroundImage);
 
-          this.updateStage({ width: image.width, height: image.height});
+        this.updateStage({ width: image.width, height: image.height});
+
+        if(callback && typeof callback === "function") {
+          callback();
         }
       },
 
@@ -128,44 +131,14 @@
         imageObj.src = imgUrl;
       },
 
-      saveAsImage: function () {
-        // present the rendered image with cursor
-        this.stage.toImage({callback:
-          function(img){
-            var download_action = $("<a />").attr({
-                  class: "glyphicon glyphicon-save",
-                  text: "Click to download as PNG Image to your computer",
-                  download: "cursored_screen.png",
-                  href: "#save_this_image",
-                  target: "_blank",
-                  "data-track-interaction" : '{"category":"image","action":"save","label":"save_to_file"}'
-                }).on("click keyup", function(){
-                  // take the imgs data uri and put it in the links destination href to allow download
-                  $(this).attr("href", $(this).parent().find("img").attr("src"));
-                }),
-                delete_action = $("<a />").attr({
-                  class: "glyphicon glyphicon-trash",
-                  text: "Click to Delete this Image - you got plenty left anyways right?!",
-                  href: "#remove_this_image",
-                  "data-track-interaction" : '{"category":"thumb","action":"delete","label":"delete_thumb"}'
-                }).on("click touch keyup", function(event){
-                  // remove the image from the savend images
-                  $(this).parents("li").remove();
-
-                  event.preventDefault();
-                }),
-                li = $("<li>")
-                      .append($(img).attr({
-                        width: "150"
-                      }))
-                      .append(download_action)
-                      .append(delete_action);
-
-            li.addClass("fadeInDown animated");
-
-            $("ul#coursored_imgs").append(li);
+      // the callback argument will be handed back with the image as argument
+      // and no context specified
+      createImage: function (callback) {
+        this.stage.toImage({ callback : function(img){
+          if (callback) {
+            callback.call(null, img);
           }
-        });
+        }});
       },
 
       /* redraw the stage and all layers
@@ -222,7 +195,7 @@
     return {
       setBackground:  cMe.setBackgroundImage.bind(cMe),
       setPointer:     cMe.setPointerImage.bind(cMe),
-      save:           cMe.saveAsImage.bind(cMe)
+      getImage:       cMe.createImage.bind(cMe)
     };
   };
 })(jQuery, Kinetic);
