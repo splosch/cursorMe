@@ -51,7 +51,7 @@ $(function( Dropzone ) {
 
       // ask the cursorMe canvas to return the created image and handle it
       this.page.on(EVT_CLICK, ACTION_EL.save, function(event){
-        this.canvas.getImage(this.handleCreatedImage.bind(this));
+        this.canvas.getImage(this.handleCreatedImage);
       }.bind(this));
 
       // remove current image from the stage

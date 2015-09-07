@@ -1,8 +1,11 @@
 /*
- *
- *
  * uses the image "Cursor" by Jeff Warren (https://www.flickr.com/photos/jeffreywarren/2970122251)
  * licenced under (CC BY-SA 2.0) --- https://creativecommons.org/licenses/by-sa/2.0
+ */
+
+/*
+ * Makes use of jasmine custom matchers (Tutorial: http://jasmine.github.io/2.3/custom_matcher.html)
+ * - imagediff.js is added as a matcher
  */
 
 var myStage,
@@ -24,27 +27,36 @@ describe("Basic cursorMe instantiation", function() {
   });
 });
 
-describe("Interacting with cursorMe API", function() {
+describe("CursorMe Plugin", function() {
   beforeEach(function() {
-    var newBackgroundImage = new Image(),
-        cursoMeResult      = new Image();
-
-    this.addMatchers(imagediff.jasmine);
+    jasmine.addMatchers(imagediff);
 
     $("body").append($stage);
     myStage = $.cursorMe($(STAGE_SEL), {});
-
-    newBackgroundImage.src = 'images/cursor_150x150.jpg';
-    myStage.setBackground(newBackgroundImage);
-    newBackgroundImage.complete(done);
   });
 
   afterEach(function() {
     $(STAGE_SEL).remove();
   });
 
-  xit('should convert be the same image', function () {
-    expect(newBackgroundImage).toImageDiffEqual(cursoMeResult);
+  it('on calling setBackground adds the given background image', function () {
+    var newBackgroundImage = new Image();
+
+    // stub handleCreatedImage() to verify output of the plugin
+    var old_handleCreatedImage = myStage.handleCreatedImage;
+
+    myStage.handleCreatedImage = function(cursoredImg) {
+      expect(newBackgroundImage).toImageDiffEqual(cursoredImg);
+    };
+
+    // provide a loaded image
+    $(newBackgroundImage).imgLoad(function(img){
+      myStage.setBackground(img);
+      // TODO fix fail dur to async operation timeout
+      myStage.getImage(myStage.handleCreatedImage);
+    }.bind(myStage));
+
+    newBackgroundImage.src = 'images/cursor_150x150.jpg';
   });
 });
 
