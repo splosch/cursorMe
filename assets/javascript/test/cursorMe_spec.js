@@ -36,7 +36,7 @@ describe("CursorMe while setting background and cursor images ", function() {
 
     // make sure both images are loaded before telling jasmine to go on
     $(newBackgroundImage).on("load", function(){
-      $(newBackgroundImage).on("load", done());
+      $(newPointerImage).on("load", done());
     });
 
     $("body").append($stage);

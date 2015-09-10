@@ -21,7 +21,7 @@ $(function( Dropzone ) {
 
   app = {
     dropzone: {},
-    fallbackPointerImg: "assets/images/icons/hand1.png",
+    fallbackPointerUrl: "assets/images/icons/hand1.png",
 
     init: function () {
       var dropzoneOptions = {
@@ -69,10 +69,16 @@ $(function( Dropzone ) {
       }.bind(this));
     },
 
+    /* Takes the currently selected pointer image and hands it over
+     * to the cursorMe Stage to update the cursor
+     */
     updatePointer: function () {
-      var pointerImg  = $(SEL_POINTER_IMG).attr("src");
+      var pointerImgUrl  = $(SEL_POINTER_IMG).attr("src") || this.fallbackPointerUrl,
+          pointerImg = new Image();
 
-      this.canvas.setPointer(pointerImg || this.fallbackPointerImg);
+      pointerImg.src = pointerImgUrl;
+
+      $(pointerImg).on("load", this.canvas.setPointer(pointerImg));
     },
 
     /* Once a new image has been created,

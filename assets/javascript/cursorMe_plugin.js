@@ -81,8 +81,8 @@
         }
 
         var backgroundImage = new Kinetic.Image({
-            image: image,
-            width: image.width,
+            image : image,
+            width : image.width,
             height: image.height
         });
 
@@ -96,39 +96,35 @@
         }
       },
 
-      setPointerImage: function (imgUrl) {
-        var imageObj = new Image();
+      setPointerImage: function (image) {
+        if (!this.isImageObject(image) || !image.currentSrc){
+          return false;
+        }
 
-        $(imageObj).on("load",
-          function(img, event) {
-            var pointerImage = new Kinetic.Image({
-                image: img,
-                x: this.stage.getWidth() / 2,
-                y: this.stage.getHeight() / 2,
-                width: img.width,
-                height: img.height,
-                draggable: true
-              });
+        var pointerImage = new Kinetic.Image({
+            image     : image,
+            x         : this.stage.getWidth() / 2,
+            y         : this.stage.getHeight() / 2,
+            width     : image.width,
+            height    : image.height,
+            draggable : true
+          });
 
-            // cursor styling
-            pointerImage.on("mouseover", function () {
-              document.body.style.cursor = "pointer";
-            });
-            pointerImage.on("mouseout", function () {
-              document.body.style.cursor = "default";
-            });
+        // cursor styling
+        pointerImage.on("mouseover", function () {
+          document.body.style.cursor = "pointer";
+        });
+        pointerImage.on("mouseout", function () {
+          document.body.style.cursor = "default";
+        });
 
-            this.layer_cursor.clear();
-            this.layer_cursor.removeChildren();
-            this.layer_cursor.add(pointerImage);
+        this.layer_cursor.clear();
+        this.layer_cursor.removeChildren();
+        this.layer_cursor.add(pointerImage);
 
-            this.options.pointerImageUrl = imgUrl;
-            this.stage.add(this.layer_cursor);
-            this.stage.draw();
-          }.bind(this, imageObj)
-        );
-
-        imageObj.src = imgUrl;
+        this.options.pointerImage = image;
+        this.stage.add(this.layer_cursor);
+        this.stage.draw();
       },
 
       // the callback argument will be handed back with the image as argument
@@ -153,8 +149,7 @@
 
         this.stage.clear();
         this.stage.add(this.layer_background);
-
-        this.setPointerImage(this.options.pointerImageUrl);
+        this.setPointerImage(this.options.pointerImage);
 
         // center content
         this.stage.content.style.marginLeft = (- Math.floor(options.width / 2)) + "px";
