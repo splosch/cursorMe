@@ -7,7 +7,6 @@
  * Makes use of jasmine custom matchers (Tutorial: http://jasmine.github.io/2.3/custom_matcher.html)
  * - imagediff.js is added as a matcher
  */
-
 var myStage,
     STAGE_SEL = "#my-canvas",
     $stage = $('<canvas id="my-canvas" width="600" height="400">I am canvas</canvas>');
@@ -27,9 +26,18 @@ describe("Basic cursorMe instantiation", function() {
   });
 });
 
-describe("CursorMe Plugin", function() {
-  beforeEach(function() {
-    jasmine.addMatchers(imagediff);
+describe("CursorMe while setting background and cursor images ", function() {
+  var newBackgroundImage     = new Image(),
+      newPointerImage        = new Image();
+
+  beforeEach(function(done) {
+    newBackgroundImage.src = 'images/cursor_150x150.jpg';
+    newPointerImage.src    = 'images/pointer.png';
+
+    // make sure both images are loaded before telling jasmine to go on
+    $(newBackgroundImage).on("load", function(){
+      $(newBackgroundImage).on("load", done());
+    });
 
     $("body").append($stage);
     myStage = $.cursorMe($(STAGE_SEL), {});
@@ -39,24 +47,26 @@ describe("CursorMe Plugin", function() {
     $(STAGE_SEL).remove();
   });
 
-  it('on calling setBackground adds the given background image', function () {
-    var newBackgroundImage = new Image();
-
-    // stub handleCreatedImage() to verify output of the plugin
-    var old_handleCreatedImage = myStage.handleCreatedImage;
-
+  it('creates the same image with set_background', function (done) {
     myStage.handleCreatedImage = function(cursoredImg) {
-      expect(newBackgroundImage).toImageDiffEqual(cursoredImg);
+      expect(imagediff.equal(newBackgroundImage, cursoredImg)).toBe(true);
+      done();
     };
 
-    // provide a loaded image
-    $(newBackgroundImage).imgLoad(function(img){
-      myStage.setBackground(img);
-      // TODO fix fail dur to async operation timeout
-      myStage.getImage(myStage.handleCreatedImage);
-    }.bind(myStage));
+    myStage.setBackground(newBackgroundImage);
+    myStage.getImage(myStage.handleCreatedImage);
 
-    newBackgroundImage.src = 'images/cursor_150x150.jpg';
+  });
+
+  it('creates a different image when adding a cursor', function (done) {
+    myStage.handleCreatedImage = function(cursoredImg) {
+      expect(imagediff.equal(newBackgroundImage, cursoredImg)).not.toBe(true);
+      done();
+    };
+
+    myStage.setBackground(newBackgroundImage);
+    myStage.setPointer(newPointerImage);
+    myStage.getImage(myStage.handleCreatedImage);
   });
 });
 
