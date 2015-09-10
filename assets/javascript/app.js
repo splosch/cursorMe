@@ -69,19 +69,6 @@ $(function( Dropzone ) {
       }.bind(this));
     },
 
-    // interact with cursorMe - stage
-    setBackgroundUrl: function ( url ) {
-      var backImg = new Image();
-
-      backImg.crossOrigin = "/crossdomain.xml"; //crossdomain xml file, this is facebook example
-      backImg.src = url;
-
-      // imgLoad is an jQuery extension to check loaded state of an Image() Object
-      $(backImg).imgLoad(function(){
-        this.canvas.setBackground(backImg);
-      }.bind(this));
-    },
-
     updatePointer: function () {
       var pointerImg  = $(SEL_POINTER_IMG).attr("src");
 
