@@ -6,6 +6,10 @@
 /*
  * Makes use of jasmine custom matchers (Tutorial: http://jasmine.github.io/2.3/custom_matcher.html)
  * - imagediff.js is added as a matcher
+ *
+ *   NOTE: custom imagediff matchers attached to jasmin
+ *         cannot be used directly since imagediff requires jasmin version 1.2
+ *         so ... i take the proprietary imagediff API to do simple comparison
  */
 var myStage,
     STAGE_SEL = "#my-canvas",
@@ -49,6 +53,7 @@ describe("CursorMe while setting background and cursor images ", function() {
 
   it('creates the same image with set_background', function (done) {
     myStage.handleCreatedImage = function(cursoredImg) {
+      // direct use of imagediff API ... see note on top of specs
       expect(imagediff.equal(newBackgroundImage, cursoredImg)).toBe(true);
       done();
     };
@@ -60,6 +65,7 @@ describe("CursorMe while setting background and cursor images ", function() {
 
   it('creates a different image when adding a cursor', function (done) {
     myStage.handleCreatedImage = function(cursoredImg) {
+      // direct use of imagediff API ... see note on top of specs
       expect(imagediff.equal(newBackgroundImage, cursoredImg)).not.toBe(true);
       done();
     };
